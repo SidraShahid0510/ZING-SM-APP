@@ -1,0 +1,379 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+body {
+  background-color: #f5f5f5;
+}
+
+.profile-banner {
+  position: relative;
+
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 40px 8%;
+}
+
+.profile-banner img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+  max-height: 45vh;
+}
+
+/* Button bottom right */
+.edit-cover-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background: #4d1cb6;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.edit-cover-btn:hover {
+  background: #aa0008;
+}
+
+/* Hidden container initially */
+#edit-cover-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 8% 20px 8%;
+}
+.edit-cover-container input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  background: #d9d8ff;
+  outline: none;
+}
+.edit-cover-container input:focus {
+  background: transparent;
+  border: 1px solid #4d1cb6;
+}
+.hidden {
+  display: none !important;
+}
+.save-cover-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-cover-btn:hover {
+  background-color: #1e7e34;
+}
+
+#main-container {
+  display: grid;
+  grid-template-columns: 35% minmax(0, 1fr); /* allow the 2nd track to fully stretch */
+  gap: 30px;
+  margin: 0 8%;
+  box-sizing: border-box;
+  align-items: start;
+}
+#main-container .main-content,
+#main-container .profile-detail-right {
+  width: 100%;
+  max-width: none; /* remove the 840px/60% cap from the index styles */
+  margin: 0; /* kill auto-centering from index */
+  justify-self: stretch;
+  box-sizing: border-box;
+}
+
+/* Left Column */
+.profile-detail-left {
+  background-color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 0px 4px 1px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  box-sizing: border-box;
+  align-self: start;
+}
+
+/* Right Column */
+.profile-detail-right {
+  min-height: auto; /* or remove min-height altogether */
+  height: auto;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+}
+.log-user-image {
+  width: 120px; /* or use % if you want fully fluid */
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%; /* makes the wrapper circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.log-user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keeps aspect ratio and fills circle */
+  border-radius: 50%; /* ensures image corners are round */
+}
+.profile-username p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+  margin-top: 10px;
+}
+.update-login-user {
+  display: flex;
+  flex-direction: column;
+}
+.update-login-user p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4d1cb6;
+  margin-bottom: 10px;
+}
+.update-login-user input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+
+  box-sizing: border-box;
+  border: none;
+  background: #d9d8ff;
+  outline: none;
+  display: none;
+}
+.update-login-user input:focus {
+  background: transparent;
+  border: 1px solid #4d1cb6;
+}
+.bio {
+  padding: 15px 40px;
+}
+.bio h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4d1cb6;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.bio-details {
+  display: flex;
+  gap: 12px;
+  margin: 15px 0;
+}
+.bio-details i {
+  font-size: 1rem;
+  color: #4d1cb6;
+}
+.bio-details p {
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.posts-info {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.posts-info p {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.user-posts-info {
+  display: flex;
+  margin: 25px 0;
+  justify-content: space-around;
+}
+
+/*************bio form********/
+#bioFormContainer,
+#bioDisplayContainer {
+  max-width: 600px; /* limits width on larger screens */
+  width: 100%; /* responsive width */
+  margin: 10px 0; /* center horizontally with some top/bottom space */
+
+  box-sizing: border-box;
+}
+/* Headings */
+.bio-heading {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #4d1cb6;
+}
+
+/* Textarea */
+#bioForm textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 30px;
+  font-size: 0.9rem;
+  resize: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  background-color: #d9d8ff;
+}
+
+/* Buttons */
+#bioForm button,
+#bioDisplayContainer button {
+  background-color: #4d1cb6;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 0.875rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#bioForm button:hover,
+#bioDisplayContainer button:hover {
+  background-color: #aa0008;
+}
+#bioDisplayContainer button {
+  margin-top: 15px;
+}
+/* Status message */
+#status {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #050505;
+  text-align: center;
+  min-height: 0px;
+}
+
+/* Bio display text */
+#bioText {
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  color: #000000;
+  /*   background-color: #d9d8ff; */
+  width: 100%;
+  padding: 0 30px;
+
+  min-height: auto;
+  font-weight: 500;
+  text-align: center;
+}
+/* #profile-detail-right {
+  flex-basis: 62%;
+  height: auto;
+  min-height: 100vh;
+} */
+@media only screen and (max-width: 1200px) {
+  .profile-banner {
+    margin: 30px 7%;
+  }
+  .profile-banner img {
+    max-height: 40vh;
+  }
+  #main-container {
+    margin: 0 7%;
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 1150px) {
+  .log-user-image img {
+    width: 80px;
+    height: 80px;
+  }
+  .profile-username p {
+    font-size: 1.125rem;
+  }
+  .posts-info p,
+  #bioText,
+  #bioForm textarea {
+    font-size: 0.8rem;
+  }
+  .bio-heading {
+    font-size: 1.5rem;
+  }
+  #bioForm button,
+  #bioDisplayContainer button {
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  #bioForm textarea {
+    padding: 25px;
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .profile-detail-left {
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .profile-banner {
+    margin: 50px 7% 30px 7%;
+  }
+  .profile-banner img {
+    max-height: 35vh;
+  }
+  #main-container {
+    grid-template-columns: 1fr; /* one column */
+    gap: 20px; /* vertical gap between columns */
+    margin: 0 7%; /* optional: full width on small screens */
+    padding: 0;
+  }
+
+  .profile-detail-left,
+  .profile-detail-right {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto; /* remove forced height */
+    height: auto; /* let content define height */
+  }
+  #bioFormContainer,
+  #bioDisplayContainer {
+    max-width: 100%;
+  }
+  .user-posts-info {
+    margin: 20px 12%;
+  }
+  #bioText {
+    padding: 0 10%;
+  }
+  .profile-username p {
+    margin-top: 0;
+  }
+}

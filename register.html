@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zing-register</title>
+    <meta
+      name="description"
+      content="Create your Zing account today! Join our social media community to share, connect, and explore exciting content with friends and followers."
+    />
+
+    <link rel="stylesheet" href="shared-login-register.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
+  </head>
+  <body>
+    <div class="form-container">
+      <img src="images/zing-logo.svg" alt="logo-img" class="zing-logo" />
+      <div class="container">
+        <div class="main">
+          <div class="content">
+            <h1>REGISTER</h1>
+            <form id="form">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="username"
+                required
+              />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="sidra@stud.noroff.no"
+                required
+              />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="************"
+                required
+              />
+              <button id="form-btn" type="submit">Register</button>
+            </form>
+            <div class="message"></div>
+            <p>Have an account? <a href="index.html">Log in</a></p>
+          </div>
+          <div class="form-img-section">
+            <div>
+              <img src="images/register-img.jpg" alt="social media image" />
+            </div>
+            <div><p>say it. share it. zing it</p></div>
+          </div>
+        </div>
+      </div>
+      <!-- Loader Spinner -->
+      <div class="loader" id="loader"></div>
+    </div>
+    <script type="module" src="register.js"></script>
+  </body>
+</html>
