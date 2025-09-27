@@ -1,4 +1,4 @@
-// nav-menu.js (ESM)
+// nav-menu.js
 export function initNav(root = document) {
   // ===== Main user menu =====
   const navMenu = root.querySelector(".nav-menu");
@@ -44,16 +44,7 @@ export function initNav(root = document) {
   navUserIcon?.setAttribute("role", "button");
   navMenuClose?.addEventListener("click", closeNavMenu);
 
-  // Close with ESC and outside-click
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeNavMenu();
-  });
-  document.addEventListener("click", (e) => {
-    if (!navMenu || !navMenu.classList.contains("show")) return;
-    if (!navMenu.contains(e.target) && e.target !== navUserIcon) closeNavMenu();
-  });
-
-  // ===== Friends menu (optional on some pages) =====
+  // ===== Friends menu  =====
   const friendMenu = root.querySelector(".nav-friends");
   const friendsBtn = root.querySelector(
     ".left-sidebar-menu-items:nth-child(3)"
@@ -75,10 +66,17 @@ export function initNav(root = document) {
     friendMenu.setAttribute("aria-hidden", "true");
   }
 
-  friendsBtn?.addEventListener("click", openFriendMenu);
-  closeFriendBtn?.addEventListener("click", closeFriendMenu);
+  // Keep main nav open while using Friends
+  friendsBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openFriendMenu();
+  });
+  closeFriendBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeFriendMenu();
+  });
 
-  // ===== Events menu (optional on some pages) =====
+  // ===== Events menu  =====
   const eventMenu = root.querySelector(".event-menu");
   const eventsBtn = root.querySelector(".left-sidebar-menu-items:nth-child(4)");
   const closeEventBtn = root.getElementById
@@ -98,8 +96,32 @@ export function initNav(root = document) {
     eventMenu.setAttribute("aria-hidden", "true");
   }
 
-  eventsBtn?.addEventListener("click", openEventMenu);
-  closeEventBtn?.addEventListener("click", closeEventMenu);
+  // Keep main nav open while using Events
+  eventsBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openEventMenu();
+  });
+  closeEventBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeEventMenu();
+  });
+
+  // ===== Keyboard + outside click =====
+  // ESC closes small panels first, then the main menu
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (friendMenu?.classList.contains("show")) return void closeFriendMenu();
+    if (eventMenu?.classList.contains("show")) return void closeEventMenu();
+    closeNavMenu();
+  });
+
+  // Outside-click: ignore clicks inside the small panels so nav stays open
+  document.addEventListener("click", (e) => {
+    if (!navMenu || !navMenu.classList.contains("show")) return;
+    const t = e.target;
+    if (friendMenu?.contains(t) || eventMenu?.contains(t)) return; // keep nav open
+    if (!navMenu.contains(t) && t !== navUserIcon) closeNavMenu();
+  });
 
   // ===== Logout =====
   if (logoutBtn) {
