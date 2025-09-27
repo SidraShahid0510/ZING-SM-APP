@@ -50,4 +50,4 @@ Zing is a social app built with vanilla HTML/CSS/JS and ES6 modules.The front-en
 # Contributing
 PRs welcome! Keep functions small, add JSDoc to new modules, and prefer pure functions in APIs and DOM-only in renderers.
 # Live Site
-[ZING Live Link]()
+[ZING Live Link](https://sidrashahid0510.github.io/ZING-SM-APP/index.html)
