@@ -1039,7 +1039,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".create-activity-icons .fa-face-smile"
   );
   const closeFeelingsBtn = document.getElementById("close-feelings");
-  const feelingOptions = document.querySelectorAll(".feeling");
+  const feelingOptions = feelingsSection?.querySelectorAll(".feeling");
 
   setupEmojiPicker(feelingOptions, textarea, feelingsSection);
 
@@ -1048,15 +1048,28 @@ document.addEventListener("DOMContentLoaded", () => {
     createPostContainer?.classList.add("active");
     document.body.style.overflow = "hidden";
 
-    const createImg =
-      document.getElementById("create-profile-img") ||
-      document.querySelector(".write-post-section img");
+    // 👉 reset the CREATE composer to a clean state
+    const t = document.getElementById("post-title");
+    const ta = document.querySelector(".create-txt textarea");
+    const img = document.getElementById("image-url");
+    const urlDiv = document.querySelector(".url-img-div");
+    const prev = urlDiv?.querySelector("img");
+    const feelings = document.querySelector(".feelings-section");
+
+    if (t) t.value = "";
+    if (ta) ta.value = "";
+    if (img) {
+      img.value = "";
+      img.style.display = "none";
+    }
+    if (prev) prev.src = "";
+    if (urlDiv) urlDiv.style.display = "none";
+    if (feelings) feelings.style.display = "none";
+
+    // set avatar + username (keep your existing code)
+    const createImg = document.getElementById("create-profile-img");
     if (createImg) {
-      const url =
-        window.currentAvatarUrl ||
-        localStorage.getItem("avatarUrl") ||
-        DEFAULT_AVATAR;
-      createImg.src = url;
+      createImg.src = currentAvatarUrl || DEFAULT_AVATAR;
       createImg.onerror = () => {
         createImg.onerror = null;
         createImg.src = DEFAULT_AVATAR;
