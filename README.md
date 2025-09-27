@@ -23,3 +23,31 @@ Zing is a social app built with vanilla HTML/CSS/JS and ES6 modules.The front-en
 - Front-end: HTML, CSS, Vanilla JS (ES modules)
 
 - API: Noroff Social API (v2)
+
+# How to run this project
+1) Zing uses **ES6 modules**, so you must run it over **HTTP** (not `file://`).
+##### Prerequisites
+- A modern browser (Chrome/Edge/Firefox/Safari).
+- A Noroff Social API account + API key.
+2) Start a local server
+ - Install the “Live Server” extension.
+
+- Right-click index.html → Open with Live Server.
+
+- It opens at something like http://127.0.0.1:5500/.
+3) Use the app
+
+- Open index.html for the main feed.
+
+- Open login-user.html for your profile (after logging in).
+
+- Open user-profile.html?username=<name> to view someone else’s profile.
+4) Login / Register
+
+- Use the built-in forms to register or log in.
+
+- The app stores accessToken, name, and cached avatarUrl in localStorage.
+# Contributing
+PRs welcome! Keep functions small, add JSDoc to new modules, and prefer pure functions in APIs and DOM-only in renderers.
+# Live Site
+[ZING Live Link]()
