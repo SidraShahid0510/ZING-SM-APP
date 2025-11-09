@@ -2,7 +2,7 @@ const Noroff_API_Key = "384ffc1f-5fb6-497c-b8ef-68eb6ba14e6f";
 
 const loginForm = document.querySelector("#form");
 const message = document.querySelector(".message");
-const loader = document.getElementById("loader");
+
 hideLoader();
 function showLoader() {
   document.getElementById("loader").style.display = "flex";

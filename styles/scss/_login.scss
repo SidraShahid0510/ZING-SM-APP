@@ -1,0 +1,126 @@
+@use "./mixins" as mix;
+@use "./variables" as *;
+@use "sass:map";
+.auth {
+  &-wrap {
+    max-width: 960px;
+    margin-inline: auto;
+  }
+  &-logo {
+    width: 130px;
+  }
+  &-card {
+    overflow: hidden;
+    @include mix.rounded(0.5rem);
+    @include mix.card-shadow();
+  }
+  &-left {
+    background: color("background");
+
+    @include mix.padding(clamp(2rem, 4vw, 3rem));
+    h1 {
+      color: color("primary");
+      font-weight: 600;
+      font-size: 1.75rem;
+    }
+  }
+  &-right {
+    background: color("input-bg");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+    @include mix.padding(clamp(1.5rem, 4vw, 2.5rem));
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    p {
+      margin-top: 3rem;
+      font-weight: 600;
+      font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+      color: #000;
+      text-align: center;
+    }
+  }
+  & .form-label {
+    font-weight: 500;
+    padding-inline: 0.75rem;
+    color: color("secondary");
+  }
+  & .form-control {
+    color: color("secondary");
+    @include mix.padding(0.875rem, 1.25rem);
+    background: color("input-bg");
+    font-size: 1rem;
+
+    &:focus {
+      background: color("background");
+      border: 1px solid color("input-focus-border-color");
+      box-shadow: none;
+    }
+  }
+
+  & .btn.btn-primary {
+    width: 100%;
+    @include mix.padding(0.875rem, 1rem);
+    font-weight: 500;
+    background-color: color("primary");
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  }
+  & .btn.btn-primary:hover {
+    background-color: color("btn-hover-color");
+
+    color: #fff;
+  }
+  &-meta {
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    a {
+      color: color("primary");
+      text-decoration: none;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    a:hover {
+      color: color("btn-hover-color");
+    }
+  }
+  & .loader-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 2000;
+
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}
+@media (max-width: 992px) {
+  .auth {
+    &-logo {
+      width: 100px;
+    }
+    &-left {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+    & .btn.btn-primary {
+      font-size: 0.9rem;
+    }
+    &-meta {
+      font-size: 0.9rem;
+    }
+  }
+}

@@ -408,11 +408,17 @@ function setupEmojiPicker(feelingOptions, textareaElement, feelingsSection) {
 }
 setupEmojiPicker(feelingOptions, textarea, feelingsSection);
 
+
 feelingsIcon?.addEventListener("click", () => {
-  feelingsSection && (feelingsSection.style.display = "flex");
+  if (feelingsSection) {
+    feelingsSection.style.display = "flex";
+  }
 });
+
 closeFeelingsBtn?.addEventListener("click", () => {
-  feelingsSection && (feelingsSection.style.display = "none");
+  if (feelingsSection) {
+    feelingsSection.style.display = "none";
+  }
 });
 
 /**
@@ -988,8 +994,6 @@ async function deletePost(postId, container) {
     if (typeof updateOtherUserPostCount === "function") {
       updateOtherUserPostCount(localStorage.getItem("name"));
     }
-
-    console.log(`Post ${postId} deleted successfully.`);
   } catch (err) {
     console.error("Failed to delete post:", err);
   }

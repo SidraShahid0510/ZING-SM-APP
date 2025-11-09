@@ -31,7 +31,6 @@ async function registerUser(userdetails) {
 
     if (response.ok) {
       message.textContent = "Registration successful!";
-      console.log("User registered:", result);
 
       // Short delay to show success message, then redirect
       setTimeout(() => {

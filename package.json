@@ -1,0 +1,20 @@
+{
+  "name": "zing-sm-app",
+  "version": "1.0.0",
+  "description": "This assignment is to built the front-end for a social media application\r ![image alt](https://github.com/SidraShahid0510/ZING-SM-APP/blob/main/zing-img.png?raw=true)",
+  "main": "config.js",
+  "scripts": {
+    "watch": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --watch",
+    "build": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --style=compressed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.93.2"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8"
+  }
+}
