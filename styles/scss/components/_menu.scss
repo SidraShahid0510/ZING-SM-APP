@@ -1,0 +1,276 @@
+@use "../variables" as *;
+@use "../_mixins" as mix;
+nav {
+  & .nav-right {
+    position: relative;
+  }
+}
+/* local helpers */
+$panel-width: min(360px, 92vw);
+$panel-right: clamp(12px, 3vw, 15px);
+$panel-top: 57px;
+$tile-gap: 16px;
+
+/* shared dropdown panel base */
+%dropdown-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+
+  z-index: 1000;
+
+  width: $panel-width;
+  @include mix.rounded(5px);
+  @include mix.feed-card-shadow;
+  @include mix.padding(30px);
+  display: none;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  &.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+%clean-two-col-grid {
+  &.row {
+    margin: 0 !important;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+  }
+
+  > .col-6 {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $tile-gap;
+
+  > .col-6 {
+    width: 100% !important;
+    flex: none !important;
+  }
+}
+
+/* shared: compact menu tiles/cards */
+%menu-card {
+  width: 100%;
+  background: color("background");
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include mix.rounded(5px);
+  @include mix.feed-card-shadow;
+  @include mix.padding(15px, 20px);
+
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  i {
+    font-size: 1rem;
+    color: color("primary");
+    flex: 0 0 auto;
+    line-height: 1;
+  }
+  p {
+    font-size: 0.8rem;
+    color: color("secondary");
+    margin: 0;
+  }
+}
+
+nav {
+  & .nav-menu {
+    @extend %dropdown-panel;
+    background: color("body-bg");
+    transform: translateY(-12px);
+
+    & .nav-menu-profile-section {
+      margin-bottom: 20px;
+      justify-content: space-between;
+
+      i {
+        color: color("primary");
+        font-size: 1.5rem;
+      }
+
+      & .nav-menu-info {
+        p {
+          font-size: 1rem;
+          font-weight: 600;
+          color: color("secondary");
+        }
+        a {
+          color: color("primary");
+          font-size: 0.75rem;
+          font-weight: 400;
+        }
+      }
+    }
+
+    & .nav-menu-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+      @include mix.margin(20px, 0);
+      i {
+        color: color("primary");
+        font-size: 1rem;
+      }
+      p {
+        color: color("secondary");
+        font-size: 0.9rem;
+      }
+    }
+
+    /*(left sidebar menu) */
+    & .left-sidebar-menu {
+      @extend %clean-two-col-grid;
+    }
+
+    & .left-sidebar-menu-items {
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      flex: none !important;
+
+      /* visual card */
+      & .menu-tile {
+        @extend %menu-card;
+        cursor: pointer;
+      }
+    }
+  }
+
+  /*  friend dropdown */
+  & .nav-friends {
+    @extend %dropdown-panel;
+    background: color("body-bg");
+    max-height: min(70vh, 520px);
+    overflow: auto;
+
+    /* header */
+    & .friends-header {
+      margin-bottom: 16px;
+      h1 {
+        margin: 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: color("primary");
+      }
+      i {
+        font-size: 1.5rem;
+        color: color("primary");
+        cursor: pointer;
+      }
+    }
+
+    & .friends-list {
+      @extend %clean-two-col-grid;
+    }
+
+    & .friend-card {
+      width: 100%;
+      background: #fff;
+      @include mix.rounded(5px);
+      @include mix.feed-card-shadow;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        @include mix.rounded-top(5px);
+      }
+      p {
+        margin: 0 0 12px 0;
+        font-size: 0.9rem;
+        color: color("secondary");
+        font-weight: 500;
+        text-align: center;
+      }
+
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+
+    & img {
+      max-width: none;
+    }
+  }
+
+  /*  events dropdown */
+  & .event-menu {
+    @extend %dropdown-panel;
+    background: color("input-bg");
+
+    /* header */
+    & .events-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .title {
+        margin: 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: color("primary");
+      }
+      i {
+        font-size: 1.5rem;
+        color: color("primary");
+        cursor: pointer;
+      }
+    }
+
+    /* items */
+    & .event-details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      @include mix.padding(10px, 12px);
+
+      & + .event-details {
+        margin-top: 12px;
+      }
+
+      i {
+        font-size: 1rem;
+        color: color("primary");
+        flex: 0 0 auto;
+      }
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: color("secondary");
+      }
+    }
+  }
+}

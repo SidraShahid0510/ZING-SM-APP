@@ -45,25 +45,42 @@ export function initNav(root = document) {
   navMenuClose?.addEventListener("click", closeNavMenu);
 
   // ===== Friends menu  =====
+  // ===== Friends menu  =====
   const friendMenu = root.querySelector(".nav-friends");
-  const friendsBtn = root.querySelector(
-    ".left-sidebar-menu-items:nth-child(3)"
-  );
+
+  // Scope the buttons to the nav menu so we hit the real tiles
+  const friendsBtn = navMenu?.querySelectorAll(".left-sidebar-menu-items")?.[2];
+
   const closeFriendBtn = root.getElementById
     ? root.getElementById("close-friend-btn")
     : document.getElementById("close-friend-btn");
 
-  if (friendMenu) friendMenu.setAttribute("aria-hidden", "true");
+  if (friendMenu) {
+    friendMenu.style.display = "none"; // start hidden just like navMenu
+    friendMenu.setAttribute("aria-hidden", "true");
+  }
 
   function openFriendMenu() {
     if (!friendMenu) return;
-    friendMenu.classList.add("show");
-    friendMenu.setAttribute("aria-hidden", "false");
+    friendMenu.style.display = "block"; // make it participate in layout
+    requestAnimationFrame(() => {
+      // allow CSS transition to kick
+      friendMenu.classList.add("show");
+      friendMenu.setAttribute("aria-hidden", "false");
+    });
   }
+
   function closeFriendMenu() {
     if (!friendMenu) return;
     friendMenu.classList.remove("show");
-    friendMenu.setAttribute("aria-hidden", "true");
+    friendMenu.addEventListener(
+      "transitionend",
+      () => {
+        friendMenu.style.display = "none";
+        friendMenu.setAttribute("aria-hidden", "true");
+      },
+      { once: true }
+    );
   }
 
   // Keep main nav open while using Friends
@@ -78,25 +95,38 @@ export function initNav(root = document) {
 
   // ===== Events menu  =====
   const eventMenu = root.querySelector(".event-menu");
-  const eventsBtn = root.querySelector(".left-sidebar-menu-items:nth-child(4)");
+  const eventsBtn = navMenu?.querySelectorAll(".left-sidebar-menu-items")?.[3];
+
   const closeEventBtn = root.getElementById
     ? root.getElementById("close-nav-event")
     : document.getElementById("close-nav-event");
 
-  if (eventMenu) eventMenu.setAttribute("aria-hidden", "true");
+  if (eventMenu) {
+    eventMenu.style.display = "none";
+    eventMenu.setAttribute("aria-hidden", "true");
+  }
 
   function openEventMenu() {
     if (!eventMenu) return;
-    eventMenu.classList.add("show");
-    eventMenu.setAttribute("aria-hidden", "false");
+    eventMenu.style.display = "block";
+    requestAnimationFrame(() => {
+      eventMenu.classList.add("show");
+      eventMenu.setAttribute("aria-hidden", "false");
+    });
   }
   function closeEventMenu() {
     if (!eventMenu) return;
     eventMenu.classList.remove("show");
-    eventMenu.setAttribute("aria-hidden", "true");
+    eventMenu.addEventListener(
+      "transitionend",
+      () => {
+        eventMenu.style.display = "none";
+        eventMenu.setAttribute("aria-hidden", "true");
+      },
+      { once: true }
+    );
   }
 
-  // Keep main nav open while using Events
   eventsBtn?.addEventListener("click", (e) => {
     e.stopPropagation();
     openEventMenu();

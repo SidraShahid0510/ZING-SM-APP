@@ -1,0 +1,137 @@
+@use "../variables" as *;
+@use "../_mixins" as mix;
+
+.site-nav {
+  background: color("body-bg");
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  & .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding-block: 15px;
+  }
+
+  & .logo {
+    img {
+      cursor: pointer;
+      width: 80px;
+      display: block;
+    }
+  }
+  & .search-box {
+    display: flex;
+    align-items: center;
+
+    background: color("background");
+    @include mix.rounded(20px);
+    @include mix.padding(0px, 15px);
+    flex: 1;
+    max-width: 600px;
+    min-width: 180px;
+
+    i {
+      font-size: 1rem;
+      color: #8b8a8a;
+      width: 18px;
+    }
+    input {
+      width: 100%;
+      @include mix.padding(10px);
+      background: color("input-border-color");
+      outline: none;
+      border: 0;
+      font-size: 14px;
+    }
+  }
+  & .nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+
+      i {
+        color: color("primary");
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  & .nav-user-icon {
+    margin-left: 25px;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+  & .nav-user-icon.online {
+    position: relative;
+    &::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: #41db51;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+@media (max-width: 991.98px) {
+  .site-nav {
+    & .logo {
+      img {
+        width: 70px;
+      }
+    }
+    & .search-box {
+      max-width: 400px;
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .site-nav {
+    & .nav-container {
+      flex-wrap: wrap;
+      height: auto;
+      gap: 8px;
+      .logo {
+        order: 1;
+      }
+      .nav-right {
+        order: 2;
+        margin-left: auto;
+      }
+      .search-box {
+        order: 3;
+        width: 100%;
+        max-width: none;
+        margin-top: 4px;
+        flex: 0 0 100%;
+      }
+      .logo {
+        img {
+          width: 60px;
+        }
+      }
+      .nav-right {
+        .nav-icons {
+          i {
+            font-size: 1.125rem;
+          }
+        }
+      }
+    }
+  }
+}

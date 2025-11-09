@@ -8,10 +8,7 @@
       name="description"
       content="Stay connected on Zing! Explore your feed, share updates, like posts, and engage with friends on our vibrant social media platform."
     />
-
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="shared-nav.css" />
-    <link rel="stylesheet" href="login-user.css" />
+    <link rel="stylesheet" href="styles/css/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -28,584 +25,691 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
   </head>
   <body>
-    <nav>
-      <div class="logo">
-        <a href="feed.html"
-          ><img src="images/zing-logo.svg" alt="zing logo"
-        /></a>
-      </div>
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input
-          type="text"
-          name="search-box"
-          id="nav-search"
-          placeholder="Search"
-        />
-      </div>
-      <div class="nav-right">
-        <div class="nav-icons">
-          <a href="feed.html"><i class="fa-solid fa-house"></i></a>
-          <i class="fa-solid fa-bell"></i>
-          <i class="fa-solid fa-envelope"></i>
+    <!-- NAVBAR (sticky, centered content) -->
+    <nav class="site-nav">
+      <div class="container container-xxl nav-container">
+        <!-- logo -->
+        <div class="logo">
+          <a href="feed.html">
+            <img src="images/zing-logo.svg" alt="zing logo" />
+          </a>
         </div>
-        <div class="nav-user-icon online">
-          <img
-            id="nav-profile-img"
-            src="images/default-avatar.png"
-            alt="profile"
+
+        <!-- search -->
+        <div class="search-box" role="search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input
+            type="search"
+            id="nav-search"
+            placeholder="Search"
+            autocomplete="off"
+            enterkeyhint="search"
           />
         </div>
-      </div>
-      <!-- nav menu -->
-      <div class="nav-menu">
-        <div class="nav-menu-profile-section">
-          <div class="nav-menu-profile">
+
+        <!-- right cluster -->
+        <div class="nav-right">
+          <div class="nav-icons">
+            <a href="feed.html"><i class="fa-solid fa-house"></i></a>
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+
+          <div class="nav-user-icon online">
             <img
-              id="nav-menu-img"
+              id="nav-profile-img"
               src="images/default-avatar.png"
               alt="profile"
+              class="rounded-circle"
             />
+          </div>
 
-            <div class="nav-menu-info">
-              <p id="nav-username">User</p>
-              <a href="login-user.html">See your profile</a>
+          <!-- nav menu (profile) -->
+          <div class="nav-menu position-absolute">
+            <div
+              class="nav-menu-profile-section d-flex align-items-center mb-3"
+            >
+              <div class="nav-menu-profile d-flex align-items-center gap-3">
+                <img
+                  id="nav-menu-img"
+                  src="images/default-avatar.png"
+                  alt="profile"
+                  class="rounded-circle"
+                  style="width: 50px; height: 50px; object-fit: cover"
+                />
+                <div class="nav-menu-info">
+                  <p id="nav-username" class="mb-0 fw-semibold">User</p>
+                  <a href="login-user.html" class="text-decoration-none"
+                    >See your profile</a
+                  >
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-circle-xmark"
+                id="close-nav-menu"
+                role="button"
+              ></i>
+            </div>
+
+            <div class="nav-menu-content">
+              <i class="fa-solid fa-gear"></i>
+              <p class="mb-0">Settings & Privacy</p>
+            </div>
+            <div class="nav-menu-content">
+              <i class="fa-solid fa-circle-info"></i>
+              <p class="mb-0">Help & Support</p>
+            </div>
+            <div class="nav-menu-content">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <p id="logout" class="mb-0">Logout</p>
+            </div>
+
+            <div class="left-sidebar-menu row g-4 mx-0 d-lg-none">
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <a href="feed.html" class="text-decoration-none">
+                    <i class="fa-solid fa-house"></i>
+                    <p class="mb-0">Home</p>
+                  </a>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-bookmark"></i>
+                  <p class="mb-0">Saved</p>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-user-group"></i>
+                  <p class="mb-0">Friends</p>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <p class="mb-0">Events</p>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-video"></i>
+                  <p class="mb-0">Videos</p>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-image"></i>
+                  <p class="mb-0">Photos</p>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-file"></i>
+                  <p class="mb-0">Files</p>
+                </div>
+              </div>
+
+              <div class="left-sidebar-menu-items col-6">
+                <div class="menu-tile">
+                  <i class="fa-solid fa-gamepad"></i>
+                  <p class="mb-0">Games</p>
+                </div>
+              </div>
             </div>
           </div>
-          <i class="fa-solid fa-circle-xmark" id="close-nav-menu"></i>
-        </div>
 
-        <div class="nav-menu-content">
-          <i class="fa-solid fa-gear"></i>
-          <p>Settings & Privacy</p>
-        </div>
-        <div class="nav-menu-content">
-          <i class="fa-solid fa-circle-info"></i>
-          <p>Help & Support</p>
-        </div>
-
-        <div class="nav-menu-content">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          <p id="logout">Logout</p>
-        </div>
-
-        <div class="left-sidebar-menu">
-          <div class="left-sidebar-menu-items">
-            <a href="feed.html"
-              ><i class="fa-solid fa-house"></i>
-              <p>Home</p></a
+          <!-- friends menu -->
+          <div class="nav-friends position-absolute" aria-hidden="true">
+            <div
+              class="friends-header d-flex align-items-center justify-content-between"
             >
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-bookmark"></i>
-            <p>Saved</p>
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-user-group"></i>
-            <p>Friends</p>
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-calendar-days"></i>
-            <p>Events</p>
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-video"></i>
-            <p>Videos</p>
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-image"></i>
-            <p>Photos</p>
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-file"></i>
-            <p>Files</p>
-          </div>
-          <div class="left-sidebar-menu-items">
-            <i class="fa-solid fa-gamepad"></i>
-            <p>Games</p>
-          </div>
-        </div>
-      </div>
-      <!-- friend menu -->
-      <div class="nav-friends">
-        <div class="friends-header">
-          <h1>Friends</h1>
-          <i class="fa-solid fa-circle-xmark" id="close-friend-btn"></i>
-        </div>
+              <h1>Friends</h1>
+              <i
+                class="fa-solid fa-circle-xmark"
+                id="close-friend-btn"
+                role="button"
+              ></i>
+            </div>
 
-        <div class="friends-list">
-          <div class="friend-info">
-            <img src="images/maria.jpg" alt="" />
-            <p>Maria</p>
+            <div class="friends-list row">
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/maria.jpg" alt="Maria" />
+                  <p>Maria</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/Tina.jpg" alt="Tina" />
+                  <p>Tina</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/oliver.jpg" alt="Oliver" />
+                  <p>Oliver</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/sara.jpg" alt="Sara" />
+                  <p>Sara</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/sophia.jpg" alt="Sophia" />
+                  <p>Sophia</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/Urwah.jpg" alt="Urwah" />
+                  <p>Urwah</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/Mathias.jpg" alt="Mathias" />
+                  <p>Mathias</p>
+                </div>
+              </div>
+
+              <div class="friend-info col-6">
+                <div class="friend-card">
+                  <img src="images/tania.jpg" alt="Tania" />
+                  <p>Tania</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="friend-info">
-            <img src="images/Tina.jpg" alt="" />
-            <p>Tina</p>
+
+          <!-- events menu -->
+          <div class="event-menu" aria-hidden="true">
+            <div class="events-header">
+              <h1 class="title">Events</h1>
+              <i
+                class="fa-solid fa-circle-xmark"
+                id="close-nav-event"
+                role="button"
+              ></i>
+            </div>
+
+            <div class="event-details">
+              <i class="fa-solid fa-calendar-days"></i>
+              <p>4 events invites</p>
+            </div>
+
+            <div class="event-details">
+              <i class="fa-solid fa-cake-candles"></i>
+              <p>Today Maria's birthday</p>
+            </div>
           </div>
-          <div class="friend-info">
-            <img src="images/oliver.jpg" alt="" />
-            <p>Oliver</p>
-          </div>
-          <div class="friend-info">
-            <img src="images/sara.jpg" alt="" />
-            <p>Sara</p>
-          </div>
-          <div class="friend-info">
-            <img src="images/sophia.jpg" alt="" />
-            <p>Sophia</p>
-          </div>
-          <div class="friend-info">
-            <img src="images/Urwah.jpg" alt="" />
-            <p>Urwah</p>
-          </div>
-          <div class="friend-info">
-            <img src="images/Mathias.jpg" alt="" />
-            <p>Mathias</p>
-          </div>
-          <div class="friend-info">
-            <img src="images/tania.jpg" alt="" />
-            <p>Tania</p>
-          </div>
-        </div>
-      </div>
-      <!--  event menu -->
-      <div class="event-menu">
-        <div class="events-header">
-          <h1>Events</h1>
-          <i class="fa-solid fa-circle-xmark" id="close-nav-event"></i>
-        </div>
-        <div class="event-details">
-          <i class="fa-solid fa-calendar-days"></i>
-          <p>4 events invites</p>
-        </div>
-        <div class="event-details">
-          <i class="fa-solid fa-cake-candles"></i>
-          <p>Today Maria's birthday</p>
         </div>
       </div>
     </nav>
-
-    <!-- create post section -->
-    <div class="create-post-container">
-      <div class="create-post-section">
-        <div class="create-header">
-          <h1>Create Post</h1>
-          <i class="fa-solid fa-circle-xmark" id="close-create"></i>
-        </div>
-        <div class="create-content">
-          <img
-            src="images/default-avatar.png"
-            alt="profile-pic"
-            id="create-profile-img"
-          />
-          <div>
-            <h2 id="create-username">Sidra Shahid</h2>
+    <main class="site-main">
+      <!-- create post section -->
+      <div class="create-post-container">
+        <div class="create-post-section">
+          <div class="create-header">
+            <h1>Create Post</h1>
+            <i class="fa-solid fa-circle-xmark" id="close-create"></i>
           </div>
-        </div>
-        <div class="create-title">
-          <input type="text" id="post-title" placeholder="Enter a title" />
-        </div>
-
-        <div class="create-txt">
-          <textarea
-            name="postBody"
-            id="postBody"
-            placeholder="Share something"
-          ></textarea>
-        </div>
-        <div class="url-img-div">
-          <img src="images/beautiful-shot-grassy.jpg" alt="" />
-          <i class="fa-solid fa-xmark" id="remove-img"></i>
-        </div>
-        <div class="create-activity-icons">
-          <i class="fa-solid fa-video"></i>
-          <i class="fa-solid fa-image"></i>
-          <i class="fa-solid fa-location-dot"></i>
-          <i class="fa-solid fa-user-tag"></i>
-          <i class="fa-solid fa-face-smile"></i>
-        </div>
-        <input
-          type="text"
-          name="imageURl"
-          id="image-url"
-          placeholder="Image URL"
-        />
-        <div class="feelings-section">
-          <div class="feeling-header">
-            <i class="fa-solid fa-circle-xmark" id="close-feelings"></i>
-            <h1>How are you feeling?</h1>
-          </div>
-          <div class="feelings-icons">
-            <div class="feeling">
-              <span>😊</span>
-              <p>Happy</p>
-            </div>
-            <div class="feeling">
-              <span>😢</span>
-              <p>Sad</p>
-            </div>
-            <div class="feeling">
-              <span>😡</span>
-              <p>Angry</p>
-            </div>
-            <div class="feeling">
-              <span>🤩</span>
-              <p>Excited</p>
-            </div>
-            <div class="feeling">
-              <span>😴</span>
-              <p>Sleepy</p>
-            </div>
-            <div class="feeling">
-              <span>😂</span>
-              <p>Amused</p>
-            </div>
-            <div class="feeling">
-              <span>😍</span>
-              <p>Loved</p>
-            </div>
-            <div class="feeling">
-              <span>😎</span>
-              <p>Cool</p>
-            </div>
-            <div class="feeling">
-              <span>🤔</span>
-              <p>Thoughtful</p>
-            </div>
-            <div class="feeling">
-              <span>😇</span>
-              <p>Blessed</p>
-            </div>
-            <div class="feeling">
-              <span>🤒</span>
-              <p>Sick</p>
-            </div>
-            <div class="feeling">
-              <span>🥳</span>
-              <p>Celebratory</p>
-            </div>
-            <div class="feeling">
-              <span>🤯</span>
-              <p>Mind-blown</p>
-            </div>
-            <div class="feeling">
-              <span>🙃</span>
-              <p>Silly</p>
-            </div>
-            <div class="feeling">
-              <span>😭</span>
-              <p>Heartbroken</p>
-            </div>
-            <div class="feeling">
-              <span>😋</span>
-              <p>Hungry</p>
-            </div>
-          </div>
-        </div>
-        <div class="create-post-btn">Post</div>
-      </div>
-    </div>
-
-    <!-- edit post section -->
-    <div class="edit-post-container">
-      <div class="edit-post-section">
-        <div class="edit-header">
-          <h1>Edit Post</h1>
-          <i class="fa-solid fa-circle-xmark" id="close-edit"></i>
-        </div>
-        <div class="edit-content">
-          <img
-            src="images/default-avatar.png"
-            alt="profile-pic"
-            id="edit-profile-img"
-          />
-          <div>
-            <h2 id="edit-username">Sidra Shahid</h2>
-          </div>
-        </div>
-        <div class="edit-title">
-          <input type="text" id="edit-post-title" placeholder="Enter a title" />
-        </div>
-        <div class="edit-txt">
-          <textarea
-            name="editBody"
-            id="edit-post-body"
-            placeholder="Share something"
-          ></textarea>
-        </div>
-        <div class="edit-url-img-div">
-          <img src="images/beautiful-shot-grassy.jpg" alt="" />
-          <i class="fa-solid fa-xmark" id="edit-remove-img"></i>
-        </div>
-        <div class="edit-activity-icons">
-          <i class="fa-solid fa-video"></i>
-          <i class="fa-solid fa-image"></i>
-          <i class="fa-solid fa-location-dot"></i>
-          <i class="fa-solid fa-user-tag"></i>
-          <i class="fa-solid fa-face-smile"></i>
-        </div>
-        <input
-          type="text"
-          name="editImageUrl"
-          id="edit-image-url"
-          placeholder="Image URL"
-        />
-        <div class="edit-feelings-section">
-          <div class="feeling-header">
-            <i class="fa-solid fa-circle-xmark" id="close-edit-feelings"></i>
-            <h1>How are you feeling?</h1>
-          </div>
-          <div class="feelings-icons">
-            <div class="feeling">
-              <span>😊</span>
-              <p>Happy</p>
-            </div>
-            <div class="feeling">
-              <span>😢</span>
-              <p>Sad</p>
-            </div>
-            <div class="feeling">
-              <span>😡</span>
-              <p>Angry</p>
-            </div>
-            <div class="feeling">
-              <span>🤩</span>
-              <p>Excited</p>
-            </div>
-            <div class="feeling">
-              <span>😴</span>
-              <p>Sleepy</p>
-            </div>
-            <div class="feeling">
-              <span>😂</span>
-              <p>Amused</p>
-            </div>
-            <div class="feeling">
-              <span>😍</span>
-              <p>Loved</p>
-            </div>
-            <div class="feeling">
-              <span>😎</span>
-              <p>Cool</p>
-            </div>
-            <div class="feeling">
-              <span>🤔</span>
-              <p>Thoughtful</p>
-            </div>
-            <div class="feeling">
-              <span>😇</span>
-              <p>Blessed</p>
-            </div>
-            <div class="feeling">
-              <span>🤒</span>
-              <p>Sick</p>
-            </div>
-            <div class="feeling">
-              <span>🥳</span>
-              <p>Celebratory</p>
-            </div>
-            <div class="feeling">
-              <span>🤯</span>
-              <p>Mind-blown</p>
-            </div>
-            <div class="feeling">
-              <span>🙃</span>
-              <p>Silly</p>
-            </div>
-            <div class="feeling">
-              <span>😭</span>
-              <p>Heartbroken</p>
-            </div>
-            <div class="feeling">
-              <span>😋</span>
-              <p>Hungry</p>
-            </div>
-          </div>
-        </div>
-        <div class="edit-post-btn">Save</div>
-      </div>
-    </div>
-
-    <!--  user post detail page -->
-    <div class="post-detail-container">
-      <div class="post-detail-section">
-        <div class="post-detail-header">
-          <h1>Post</h1>
-          <i class="fa-solid fa-circle-xmark" id="close-post-detail"></i>
-        </div>
-        <div class="post-detail-content"></div>
-      </div>
-    </div>
-
-    <div class="container">
-      <!-- left sidebar starts here -->
-      <div class="left-sidebar">
-        <div class="left-sidebar-links">
-          <a href="feed.html"
-            ><i class="fa-solid fa-house"></i>
-            <p>Home</p></a
-          >
-        </div>
-
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-bookmark"></i>
-          <p>Saved</p>
-        </div>
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-user-group"></i>
-          <p>Friends</p>
-        </div>
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-calendar-days"></i>
-          <p>Events</p>
-        </div>
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-video"></i>
-          <p>Videos</p>
-        </div>
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-image"></i>
-          <p>Photos</p>
-        </div>
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-file"></i>
-          <p>Files</p>
-        </div>
-        <div class="left-sidebar-links">
-          <i class="fa-solid fa-gamepad"></i>
-          <p>Games</p>
-        </div>
-      </div>
-
-      <!-- main content starts here -->
-
-      <div class="main-content">
-        <div class="write-post-section">
-          <div class="write-post">
+          <div class="create-content">
             <img
               src="images/default-avatar.png"
-              alt="profile image"
-              id="post-profile-pic"
+              alt="profile-pic"
+              id="create-profile-img"
             />
+            <div>
+              <h2 id="create-username">Sidra Shahid</h2>
+            </div>
+          </div>
+          <div class="create-title">
+            <input type="text" id="post-title" placeholder="Enter a title" />
+          </div>
+
+          <div class="create-txt">
             <textarea
               name="postBody"
-              id="main-post-body"
-              class="share-post-text"
+              id="postBody"
               placeholder="Share something"
             ></textarea>
           </div>
-          <div class="post-content-wrapper">
-            <div class="post-content">
-              <i class="fa-solid fa-video"></i>
-              <p>Live Video</p>
+          <div class="url-img-div">
+            <img src="images/beautiful-shot-grassy.jpg" alt="" />
+            <i class="fa-solid fa-xmark" id="remove-img"></i>
+          </div>
+          <div class="create-activity-icons">
+            <i class="fa-solid fa-video"></i>
+            <i class="fa-solid fa-image"></i>
+            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-user-tag"></i>
+            <i class="fa-solid fa-face-smile"></i>
+          </div>
+          <input
+            type="text"
+            name="imageURl"
+            id="image-url"
+            placeholder="Image URL"
+          />
+          <div class="feelings-section">
+            <div class="feeling-header">
+              <i class="fa-solid fa-circle-xmark" id="close-feelings"></i>
+              <h1>How are you feeling?</h1>
             </div>
-            <div class="post-content">
+            <div class="feelings-icons">
+              <div class="feeling">
+                <span>😊</span>
+                <p>Happy</p>
+              </div>
+              <div class="feeling">
+                <span>😢</span>
+                <p>Sad</p>
+              </div>
+              <div class="feeling">
+                <span>😡</span>
+                <p>Angry</p>
+              </div>
+              <div class="feeling">
+                <span>🤩</span>
+                <p>Excited</p>
+              </div>
+              <div class="feeling">
+                <span>😴</span>
+                <p>Sleepy</p>
+              </div>
+              <div class="feeling">
+                <span>😂</span>
+                <p>Amused</p>
+              </div>
+              <div class="feeling">
+                <span>😍</span>
+                <p>Loved</p>
+              </div>
+              <div class="feeling">
+                <span>😎</span>
+                <p>Cool</p>
+              </div>
+              <div class="feeling">
+                <span>🤔</span>
+                <p>Thoughtful</p>
+              </div>
+              <div class="feeling">
+                <span>😇</span>
+                <p>Blessed</p>
+              </div>
+              <div class="feeling">
+                <span>🤒</span>
+                <p>Sick</p>
+              </div>
+              <div class="feeling">
+                <span>🥳</span>
+                <p>Celebratory</p>
+              </div>
+              <div class="feeling">
+                <span>🤯</span>
+                <p>Mind-blown</p>
+              </div>
+              <div class="feeling">
+                <span>🙃</span>
+                <p>Silly</p>
+              </div>
+              <div class="feeling">
+                <span>😭</span>
+                <p>Heartbroken</p>
+              </div>
+              <div class="feeling">
+                <span>😋</span>
+                <p>Hungry</p>
+              </div>
+            </div>
+          </div>
+          <div class="create-post-btn">Post</div>
+        </div>
+      </div>
+
+      <!-- edit post section -->
+      <div class="edit-post-container">
+        <div class="edit-post-section">
+          <div class="edit-header">
+            <h1>Edit Post</h1>
+            <i class="fa-solid fa-circle-xmark" id="close-edit"></i>
+          </div>
+          <div class="edit-content">
+            <img
+              src="images/default-avatar.png"
+              alt="profile-pic"
+              id="edit-profile-img"
+            />
+            <div>
+              <h2 id="edit-username">Sidra Shahid</h2>
+            </div>
+          </div>
+          <div class="edit-title">
+            <input
+              type="text"
+              id="edit-post-title"
+              placeholder="Enter a title"
+            />
+          </div>
+          <div class="edit-txt">
+            <textarea
+              name="editBody"
+              id="edit-post-body"
+              placeholder="Share something"
+            ></textarea>
+          </div>
+          <div class="edit-url-img-div">
+            <img src="images/beautiful-shot-grassy.jpg" alt="" />
+            <i class="fa-solid fa-xmark" id="edit-remove-img"></i>
+          </div>
+          <div class="edit-activity-icons">
+            <i class="fa-solid fa-video"></i>
+            <i class="fa-solid fa-image"></i>
+            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-user-tag"></i>
+            <i class="fa-solid fa-face-smile"></i>
+          </div>
+          <input
+            type="text"
+            name="editImageUrl"
+            id="edit-image-url"
+            placeholder="Image URL"
+          />
+          <div class="edit-feelings-section">
+            <div class="feeling-header">
+              <i class="fa-solid fa-circle-xmark" id="close-edit-feelings"></i>
+              <h1>How are you feeling?</h1>
+            </div>
+            <div class="feelings-icons">
+              <div class="feeling">
+                <span>😊</span>
+                <p>Happy</p>
+              </div>
+              <div class="feeling">
+                <span>😢</span>
+                <p>Sad</p>
+              </div>
+              <div class="feeling">
+                <span>😡</span>
+                <p>Angry</p>
+              </div>
+              <div class="feeling">
+                <span>🤩</span>
+                <p>Excited</p>
+              </div>
+              <div class="feeling">
+                <span>😴</span>
+                <p>Sleepy</p>
+              </div>
+              <div class="feeling">
+                <span>😂</span>
+                <p>Amused</p>
+              </div>
+              <div class="feeling">
+                <span>😍</span>
+                <p>Loved</p>
+              </div>
+              <div class="feeling">
+                <span>😎</span>
+                <p>Cool</p>
+              </div>
+              <div class="feeling">
+                <span>🤔</span>
+                <p>Thoughtful</p>
+              </div>
+              <div class="feeling">
+                <span>😇</span>
+                <p>Blessed</p>
+              </div>
+              <div class="feeling">
+                <span>🤒</span>
+                <p>Sick</p>
+              </div>
+              <div class="feeling">
+                <span>🥳</span>
+                <p>Celebratory</p>
+              </div>
+              <div class="feeling">
+                <span>🤯</span>
+                <p>Mind-blown</p>
+              </div>
+              <div class="feeling">
+                <span>🙃</span>
+                <p>Silly</p>
+              </div>
+              <div class="feeling">
+                <span>😭</span>
+                <p>Heartbroken</p>
+              </div>
+              <div class="feeling">
+                <span>😋</span>
+                <p>Hungry</p>
+              </div>
+            </div>
+          </div>
+          <div class="edit-post-btn">Save</div>
+        </div>
+      </div>
+
+      <!--  user post detail page -->
+      <div class="post-detail-container">
+        <div class="post-detail-section">
+          <div class="post-detail-header">
+            <h1>Post</h1>
+            <i class="fa-solid fa-circle-xmark" id="close-post-detail"></i>
+          </div>
+          <div class="post-detail-content"></div>
+        </div>
+      </div>
+
+      <!-- bootstrap container -->
+      <div class="container container-xxl">
+        <!-- keep your .container -->
+        <div class="row gx-5">
+          <!-- NEW: grid row -->
+
+          <!-- left sidebar starts here -->
+          <div class="left-sidebar col-12 col-lg-3 col-xl-3">
+            <div class="left-sidebar-links">
+              <a href="feed.html"
+                ><i class="fa-solid fa-house"></i>
+                <p>Home</p></a
+              >
+            </div>
+
+            <div class="left-sidebar-links">
+              <i class="fa-solid fa-bookmark"></i>
+              <p>Saved</p>
+            </div>
+            <div class="left-sidebar-links">
+              <i class="fa-solid fa-user-group"></i>
+              <p>Friends</p>
+            </div>
+            <div class="left-sidebar-links">
+              <i class="fa-solid fa-calendar-days"></i>
+              <p>Events</p>
+            </div>
+            <div class="left-sidebar-links">
+              <i class="fa-solid fa-video"></i>
+              <p>Videos</p>
+            </div>
+            <div class="left-sidebar-links">
               <i class="fa-solid fa-image"></i>
               <p>Photos</p>
             </div>
-            <div class="post-content">
-              <i class="fa-solid fa-face-smile"></i>
-              <p>Feeling</p>
+            <div class="left-sidebar-links">
+              <i class="fa-solid fa-file"></i>
+              <p>Files</p>
             </div>
+            <div class="left-sidebar-links">
+              <i class="fa-solid fa-gamepad"></i>
+              <p>Games</p>
+            </div>
+          </div>
 
-            <div class="post-btn">Post</div>
+          <!-- main content starts here -->
+          <div class="main-content col-12 col-lg-7 col-xl-6">
+            <div class="write-post-section">
+              <div class="write-post">
+                <img
+                  src="images/default-avatar.png"
+                  alt="profile image"
+                  id="post-profile-pic"
+                />
+                <textarea
+                  name="postBody"
+                  id="main-post-body"
+                  class="share-post-text"
+                  placeholder="Share something"
+                ></textarea>
+              </div>
+              <div class="post-content-wrapper d-none d-sm-flex">
+                <div class="post-content">
+                  <i class="fa-solid fa-video"></i>
+                  <p>Live Video</p>
+                </div>
+                <div class="post-content">
+                  <i class="fa-solid fa-image"></i>
+                  <p>Photos</p>
+                </div>
+                <div class="post-content">
+                  <i class="fa-solid fa-face-smile"></i>
+                  <p>Feeling</p>
+                </div>
+
+                <div class="post-btn">Post</div>
+              </div>
+            </div>
+            <h1 class="feed-heading">Feeds</h1>
+            <div class="post-container" id="post-container"></div>
+          </div>
+
+          <!-- right sidebar starts here -->
+          <div class="right-sidebar col-12 col-lg-2 col-xl-3">
+            <div class="stories-wrapper">
+              <h1>Stories</h1>
+              <div class="stories-section">
+                <div class="story">
+                  <img src="images/food1-image.jpg" alt="" />
+                  <div class="story-footer">
+                    <img
+                      src="images/icons8-plus.svg"
+                      alt=""
+                      class="profile-pic"
+                    />
+                    <p>Post story</p>
+                  </div>
+                </div>
+                <div class="story">
+                  <img src="images/food2-image.jpg" alt="" />
+                  <div class="story-footer">
+                    <img
+                      src="images/food2-image.jpg"
+                      alt=""
+                      class="profile-pic"
+                    />
+                    <p>Anna</p>
+                  </div>
+                </div>
+                <div class="story">
+                  <img src="images/food3-image.jpg" alt="" />
+                  <div class="story-footer">
+                    <img
+                      src="images/food3-image.jpg"
+                      alt=""
+                      class="profile-pic"
+                    />
+                    <p>Sara</p>
+                  </div>
+                </div>
+                <div class="story">
+                  <img src="images/food4-image.jpg" alt="" />
+                  <div class="story-footer">
+                    <img
+                      src="images/food4-image.jpg"
+                      alt=""
+                      class="profile-pic"
+                    />
+                    <p>Tina</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="events">
+              <h1>Events</h1>
+              <div class="event-details">
+                <i class="fa-solid fa-calendar-days"></i>
+                <p>4 events invites</p>
+              </div>
+              <div class="event-details">
+                <i class="fa-solid fa-cake-candles"></i>
+                <p>Today Maria's birthday</p>
+              </div>
+            </div>
+            <div class="contacts">
+              <h1>Contacts</h1>
+              <div class="contacts-details">
+                <div class="contact-info">
+                  <img src="images/maria.jpg" alt="" />
+                  <p>Maria</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/Tina.jpg" alt="" />
+                  <p>Tina</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/oliver.jpg" alt="" />
+                  <p>Oliver</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/sara.jpg" alt="" />
+                  <p>Sara</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/sophia.jpg" alt="" />
+                  <p>Sophia</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/Urwah.jpg" alt="" />
+                  <p>Urwah</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/Mathias.jpg" alt="" />
+                  <p>Mathias</p>
+                </div>
+                <div class="contact-info">
+                  <img src="images/tania.jpg" alt="" />
+                  <p>Tania</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <h1>Feeds</h1>
-        <div class="post-container" id="post-container"></div>
       </div>
+    </main>
 
-      <!-- right sidebar starts here -->
-
-      <div class="right-sidebar">
-        <div class="stories-wrapper">
-          <h1>Stories</h1>
-          <div class="stories-section">
-            <div class="story">
-              <img src="images/food1-image.jpg" alt="" />
-              <div class="story-footer">
-                <img src="images/icons8-plus.svg" alt="" class="profile-pic" />
-                <p>Post story</p>
-              </div>
-            </div>
-            <div class="story">
-              <img src="images/food2-image.jpg" alt="" />
-              <div class="story-footer">
-                <img src="images/food2-image.jpg" alt="" class="profile-pic" />
-                <p>Anna</p>
-              </div>
-            </div>
-            <div class="story">
-              <img src="images/food3-image.jpg" alt="" />
-              <div class="story-footer">
-                <img src="images/food3-image.jpg" alt="" class="profile-pic" />
-                <p>Sara</p>
-              </div>
-            </div>
-            <div class="story">
-              <img src="images/food4-image.jpg" alt="" />
-              <div class="story-footer">
-                <img src="images/food4-image.jpg" alt="" class="profile-pic" />
-                <p>Tina</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="events">
-          <h1>Events</h1>
-          <div class="event-details">
-            <i class="fa-solid fa-calendar-days"></i>
-            <p>4 events invites</p>
-          </div>
-          <div class="event-details">
-            <i class="fa-solid fa-cake-candles"></i>
-            <p>Today Maria's birthday</p>
-          </div>
-        </div>
-        <div class="contacts">
-          <h1>Contacts</h1>
-          <div class="contacts-details">
-            <div class="contact-info">
-              <img src="images/maria.jpg" alt="" />
-              <p>Maria</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/Tina.jpg" alt="" />
-              <p>Tina</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/oliver.jpg" alt="" />
-              <p>Oliver</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/sara.jpg" alt="" />
-              <p>Sara</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/sophia.jpg" alt="" />
-              <p>Sophia</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/Urwah.jpg" alt="" />
-              <p>Urwah</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/Mathias.jpg" alt="" />
-              <p>Mathias</p>
-            </div>
-            <div class="contact-info">
-              <img src="images/tania.jpg" alt="" />
-              <p>Tania</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <footer>
-      <p>Copyright 2025 -Zing</p>
+      <div class="container container-xxl">
+        <p>© 2025 Your Site</p>
+      </div>
     </footer>
     <script type="module" src="script.js"></script>
-
     <script type="module" src="nav-menu.js"></script>
   </body>
 </html>

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       feeling.addEventListener("click", () => {
         const emoji = feeling.querySelector("span")?.textContent || "";
         if (!emoji) return;
-        textareaElement.value += emoji + " ";
+        textareaElement.value += `${emoji} `;
         feelingsSection.style.display = "none";
         textareaElement.focus();
       });
@@ -556,7 +556,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   saveBtn?.addEventListener("click", () => {
     const url = bannerInput.value.trim();
-    if (!url) return alert("Enter a valid URL");
+    if (!url) {
+      return alert("Enter a valid URL");
+    }
     updateBanner(url);
     editContainer.classList.add("hidden");
     bannerInput.value = "";
@@ -901,7 +903,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (typeof updateMyPostCount === "function") await updateMyPostCount();
-      console.log(`Post ${postId} deleted.`);
     } catch (err) {
       console.error("Failed to delete post:", err);
       alert("Failed to delete post");
@@ -1200,76 +1201,81 @@ document.addEventListener("DOMContentLoaded", () => {
       : post.author?.avatar?.url || DEFAULT_AVATAR;
 
     postDetailContent.innerHTML = `
-      <div class="pd-header">
-        <div class="pd-user-profile">
-          <img src="${authorAvatar}" alt="profile" />
-          <div>
-            <div class="author-row">
-              <p class="pd-author-name">${post.author?.name || "unknown"}${
-      feeling ? ` is ${feeling}` : ""
-    }</p>
-            </div>
-            <span>${new Date(post.created).toLocaleString()}</span>
-          </div>
+  <div class="pd-header">
+    <div class="pd-user-profile">
+      <img src="${authorAvatar}" alt="profile" />
+      <div>
+        <div class="author-row">
+          <p class="pd-author-name">
+            ${post.author?.name || "unknown"}${feeling ? ` is ${feeling}` : ""}
+          </p>
         </div>
+        <span>${new Date(post.created).toLocaleString()}</span>
       </div>
+    </div>
+  </div>
 
-      <h2 class="pd-title">${post.title || "Untitled Post"}</h2>
-      <p class="pd-text">${post.body || ""}</p>
-      ${
-        postImg
-          ? `<img src="${postImg}" class="pd-img" alt="post image" />`
-          : ""
-      }
+  <h2 class="pd-title">${post.title || "Untitled Post"}</h2>
+  <p class="pd-text">${post.body || ""}</p>
+  ${postImg ? `<img src="${postImg}" class="pd-img" alt="post image" />` : ""}
 
-      <div class="pd-activity" data-post-id="${post.id}">
-        <button class="pd-like-btn" type="button" aria-pressed="false">
-          <i class="fa-solid fa-thumbs-up"></i>
-          <span class="pd-like-count">${likeCount}</span>
-        </button>
-        <button class="pd-comment-count" type="button">
-          <i class="fa-solid fa-comment"></i>
-          <span class="pd-comment-num">${commentCount}</span>
-        </button>
-        <button class="pd-share-btn" type="button"><i class="fa-solid fa-share"></i></button>
-      </div>
+  <div class="pd-activity" data-post-id="${post.id}">
+    <button class="pd-like-btn" type="button" aria-pressed="false">
+      <i class="fa-solid fa-thumbs-up"></i>
+      <span class="pd-like-count">${likeCount}</span>
+    </button>
+    <button class="pd-comment-count" type="button">
+      <i class="fa-solid fa-comment"></i>
+      <span class="pd-comment-num">${commentCount}</span>
+    </button>
+    <button class="pd-share-btn" type="button">
+      <i class="fa-solid fa-share"></i>
+    </button>
+  </div>
 
-      <div class="pd-write-comment">
-        <img src="${
-          window.currentAvatarUrl || DEFAULT_AVATAR
-        }" alt="${currentUsername}" />
-        <textarea class="pd-comment-textarea" placeholder="write your comment"></textarea>
-        <button class="pd-send-comment" type="button" title="Send">
-          <i class="fa-solid fa-paper-plane"></i>
-        </button>
-      </div>
+  <div class="pd-write-comment">
+    <img
+      src="${window.currentAvatarUrl || DEFAULT_AVATAR}"
+      alt="${currentUsername}"
+    />
+    <textarea
+      class="pd-comment-textarea"
+      placeholder="write your comment"
+    ></textarea>
+    <button class="pd-send-comment" type="button" title="Send">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </div>
 
-      <div class="pd-comments">
-        ${
-          Array.isArray(post.comments) && post.comments.length
-            ? post.comments
-                .map(
-                  (c) => `
-            <div class="pd-comment" data-comment-id="${c.id}">
-              <img src="${
-                c.author?.name === currentUsername
-                  ? window.currentAvatarUrl || DEFAULT_AVATAR
-                  : c.author?.avatar?.url || DEFAULT_AVATAR
-              }" alt="${c.author?.name || "unknown"}" />
-              <div>
-                <p class="pd-comment-author">${c.author?.name || "unknown"}</p>
-                <p class="pd-comment-body">${c.body || ""}</p>
-                <span class="pd-comment-time">${new Date(
-                  c.created
-                ).toLocaleString()}</span>
-              </div>
-            </div>`
-                )
-                .join("")
-            : `<p class="pd-no-comments">No comments yet.</p>`
-        }
-      </div>
-    `;
+  <div class="pd-comments">
+    ${
+      Array.isArray(post.comments) && post.comments.length
+        ? post.comments
+            .map(
+              (c) => `
+      <div class="pd-comment" data-comment-id="${c.id}">
+        <img
+          src="${
+            c.author?.name === currentUsername
+              ? window.currentAvatarUrl || DEFAULT_AVATAR
+              : c.author?.avatar?.url || DEFAULT_AVATAR
+          }"
+          alt="${c.author?.name || "unknown"}"
+        />
+        <div>
+          <p class="pd-comment-author">${c.author?.name || "unknown"}</p>
+          <p class="pd-comment-body">${c.body || ""}</p>
+          <span class="pd-comment-time">
+            ${new Date(c.created).toLocaleString()}
+          </span>
+        </div>
+      </div>`
+            )
+            .join("")
+        : `<p class="pd-no-comments">No comments yet.</p>`
+    }
+  </div>
+`;
 
     setupCommentEmojiUI(postDetailContent);
 
@@ -1290,10 +1296,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const likeBtn = postDetailContent.querySelector(".pd-like-btn");
     likeBtn?.addEventListener("click", async () => {
       await toggleLike(post.id, likeBtn);
-      try {
-        const fresh = await getSinglePost(post.id);
-        syncCardCountsFromPost(fresh);
-      } catch {}
+      const fresh = await getSinglePost(post.id);
+      syncCardCountsFromPost(fresh);
     });
 
     const sendBtn = postDetailContent.querySelector(".pd-send-comment");

@@ -1,0 +1,36 @@
+@mixin rounded($radius) {
+  border-radius: $radius;
+}
+@mixin card-shadow {
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
+}
+@mixin feed-card-shadow {
+  box-shadow: 1px 0px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+@mixin padding($a, $b: null, $c: null, $d: null) {
+  @if $b == null {
+    padding: $a;
+  } @else if $c == null {
+    padding: $a $b;
+  } @else if $d == null {
+    padding: $a $b $c;
+  } @else {
+    padding: $a $b $c $d;
+  }
+}
+@mixin margin($a, $b: null, $c: null, $d: null) {
+  @if $b == null {
+    margin: $a;
+  } @else if $c == null {
+    margin: $a $b;
+  } @else if $d == null {
+    margin: $a $b $c;
+  } @else {
+    margin: $a $b $c $d;
+  }
+}
+@mixin rounded-top($radius) {
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
