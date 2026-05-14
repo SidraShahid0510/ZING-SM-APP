@@ -63,7 +63,7 @@ If you’re not using npm yet, you can either:
 
 ```bash
   {"scripts": {
-    "watch": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --watch",
+    "dev": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --watch",
     "build": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --style=compressed"}
   }
 ```
