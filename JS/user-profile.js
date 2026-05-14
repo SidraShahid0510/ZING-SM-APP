@@ -3,10 +3,10 @@ import {
   Noroff_API_Key,
   DEFAULT_AVATAR,
   DEFAULT_POST_IMAGE,
-} from "./config.js";
-import { attachImgFallback, debounce } from "./utils.js";
-import { getSinglePost } from "./postsApi.js";
-import { reactThumbsUp } from "./reactionsApi.js";
+} from "../config.js";
+import { attachImgFallback, debounce } from "../utils.js";
+import { getSinglePost } from "../postsApi.js";
+import { reactThumbsUp } from "../reactionsApi.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const username = urlParams.get("username");
@@ -46,7 +46,7 @@ async function fetchLoggedInAvatar() {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(me)}`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     if (!res.ok) throw new Error("avatar fetch failed");
     const { data } = await res.json();
@@ -72,7 +72,7 @@ async function loadNavbarProfile() {
 
   if (seeProfileLink && loggedInUsername && loggedInUsername !== "User") {
     seeProfileLink.href = `user-profile.html?username=${encodeURIComponent(
-      loggedInUsername
+      loggedInUsername,
     )}`;
   }
 
@@ -125,7 +125,7 @@ async function loadUserInfo() {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(username)}`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     if (!res.ok) throw new Error("Failed to load profile");
     const { data } = await res.json();
@@ -155,9 +155,9 @@ async function fetchOtherUserPostCount(name) {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(
-        name
+        name,
       )}/posts?_author=false&_comments=false&_reactions=false`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     const { data = [] } = await res.json();
     return Array.isArray(data) ? data.length : 0;
@@ -183,9 +183,9 @@ async function fetchOtherUserFollowingCount(name) {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(
-        name
+        name,
       )}?_followers=true&_following=true`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     if (!res.ok) throw new Error("following fetch failed");
     const { data } = await res.json();
@@ -245,7 +245,7 @@ function renderProfilePosts(posts, container) {
     const feeling = post.feeling || "";
     const commentCount = Array.isArray(post.comments)
       ? post.comments.length
-      : post._count?.comments ?? 0;
+      : (post._count?.comments ?? 0);
     const likeCount = post._count?.reactions ?? 0;
 
     const avatar = post.author?.avatar?.url || DEFAULT_AVATAR;
@@ -261,8 +261,8 @@ function renderProfilePosts(posts, container) {
             <div>
               <div class="author-row">
                 <p class="post-author-name">${authorName}${
-      feeling ? ` is ${feeling}` : ""
-    }</p>
+                  feeling ? ` is ${feeling}` : ""
+                }</p>
               </div>
               <span>${created}</span>
             </div>
@@ -304,7 +304,7 @@ function renderProfilePosts(posts, container) {
 
     attachImgFallback(
       postEl.querySelector(".user-profile img"),
-      DEFAULT_AVATAR
+      DEFAULT_AVATAR,
     );
     attachImgFallback(postEl.querySelector(".post-img"), DEFAULT_POST_IMAGE);
 
@@ -375,9 +375,9 @@ async function loadUserPosts() {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(
-        username
+        username,
       )}/posts?_author=true&_comments=true&_reactions=true`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     const { data = [] } = await res.json();
 
@@ -448,8 +448,8 @@ function renderPostDetail(post) {
         <div>
           <div class="author-row">
             <p class="pd-author-name">${authorName}${
-    feeling ? ` is ${feeling}` : ""
-  }</p>
+              feeling ? ` is ${feeling}` : ""
+            }</p>
           </div>
           <span>${createdAt}</span>
         </div>
@@ -488,16 +488,16 @@ function renderPostDetail(post) {
                 (c) => `
           <div class="pd-comment" data-comment-id="${c.id}">
             <img src="${c.author?.avatar?.url || DEFAULT_AVATAR}" alt="${
-                  c.author?.name || "unknown"
-                }" />
+              c.author?.name || "unknown"
+            }" />
             <div>
               <p class="pd-comment-author">${c.author?.name || "unknown"}</p>
               <p class="pd-comment-body">${c.body || ""}</p>
               <span class="pd-comment-time">${new Date(
-                c.created
+                c.created,
               ).toLocaleString()}</span>
             </div>
-          </div>`
+          </div>`,
               )
               .join("")
           : `<p class="pd-no-comments">No comments yet.</p>`
@@ -507,11 +507,11 @@ function renderPostDetail(post) {
 
   attachImgFallback(
     postDetailContent.querySelector(".pd-user-profile img"),
-    DEFAULT_AVATAR
+    DEFAULT_AVATAR,
   );
   attachImgFallback(
     postDetailContent.querySelector(".pd-img"),
-    DEFAULT_POST_IMAGE
+    DEFAULT_POST_IMAGE,
   );
 
   setupCommentEmojiUI(postDetailContent);
@@ -550,22 +550,22 @@ async function refreshCommentCount(postId) {
   try {
     const res = await fetch(
       `${API_BASE}/social/posts/${encodeURIComponent(
-        postId
+        postId,
       )}?_comments=true&_author=false&_reactions=false`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     const { data } = await res.json();
     const newCount = Array.isArray(data?.comments)
       ? data.comments.length
-      : data?._count?.comments ?? 0;
+      : (data?._count?.comments ?? 0);
 
     const modalNum = document.querySelector(
-      ".post-detail-content .pd-comment-num"
+      ".post-detail-content .pd-comment-num",
     );
     if (modalNum) modalNum.textContent = newCount;
 
     const listNum = document.querySelector(
-      `.profile-post-container .post[data-post-id="${postId}"] .activity-comment-num`
+      `.profile-post-container .post[data-post-id="${postId}"] .activity-comment-num`,
     );
     if (listNum) listNum.textContent = newCount;
   } catch (err) {
@@ -578,7 +578,7 @@ function syncCardLikesFromPost(post) {
   if (!post || !post.id) return;
 
   const card = document.querySelector(
-    `.profile-post-container .post[data-post-id="${post.id}"]`
+    `.profile-post-container .post[data-post-id="${post.id}"]`,
   );
   if (!card) return;
 
@@ -633,7 +633,7 @@ async function sendComment(postId, textareaEl) {
         method: "POST",
         headers: authHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ body: text }),
-      }
+      },
     );
 
     if (!res.ok) throw new Error("Comment request failed");
@@ -665,13 +665,13 @@ function appendComment(c) {
   const html = `
     <div class="pd-comment" data-comment-id="${c.id}">
       <img src="${c.author?.avatar?.url || DEFAULT_AVATAR}" alt="${
-    c.author?.name || "User"
-  }" />
+        c.author?.name || "User"
+      }" />
       <div>
         <p class="pd-comment-author">${c.author?.name || "User"}</p>
         <p class="pd-comment-body">${c.body || ""}</p>
         <span class="pd-comment-time">${new Date(
-          c.created || Date.now()
+          c.created || Date.now(),
         ).toLocaleString()}</span>
       </div>
     </div>
@@ -733,7 +733,7 @@ function setupCommentEmojiUI(modalRootEl) {
   panel.innerHTML = emojis
     .map(
       (e) =>
-        `<button type="button" class="pd-emoji-item" data-emoji="${e}">${e}</button>`
+        `<button type="button" class="pd-emoji-item" data-emoji="${e}">${e}</button>`,
     )
     .join("");
   composer.insertAdjacentElement("afterend", panel);

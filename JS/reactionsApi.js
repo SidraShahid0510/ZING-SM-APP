@@ -11,7 +11,7 @@ export async function reactThumbsUp(postId) {
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": Noroff_API_Key,
       },
-    }
+    },
   );
   if (!res.ok) throw new Error("Reaction failed");
   return true;
@@ -21,7 +21,7 @@ export async function reactWithEmoji(postId, emoji) {
   const token = localStorage.getItem("accessToken");
   const res = await fetch(
     `${API_BASE}/social/posts/${encodeURIComponent(
-      postId
+      postId,
     )}/react/${encodeURIComponent(emoji)}`,
     {
       method: "PUT",
@@ -29,7 +29,7 @@ export async function reactWithEmoji(postId, emoji) {
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": Noroff_API_Key,
       },
-    }
+    },
   );
   if (!res.ok) throw new Error("Reaction failed");
   return true;

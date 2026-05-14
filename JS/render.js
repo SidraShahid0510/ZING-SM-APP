@@ -31,14 +31,14 @@ async function getFollowingNames(me, token) {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(
-        me
+        me,
       )}?_followers=true&_following=true`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
           "X-Noroff-API-Key": Noroff_API_Key,
         },
-      }
+      },
     );
     if (!res.ok) return [];
     const { data } = await res.json();
@@ -70,7 +70,7 @@ function openEditModalForPost(post) {
   const editTextarea = editPostContainer.querySelector(".edit-txt textarea");
   const editImageInput = editPostContainer.querySelector("#edit-image-url");
   const editPreviewImg = editPostContainer.querySelector(
-    ".edit-url-img-div img"
+    ".edit-url-img-div img",
   );
   const editUrlImageDiv = editPostContainer.querySelector(".edit-url-img-div");
 
@@ -148,8 +148,8 @@ export async function generatePosts(posts, container) {
           <div>
             <div class="author-row">
               <p class="post-author-name">${post.author?.name || "unknown"}${
-      feeling ? ` is ${feeling}` : ""
-    }</p>
+                feeling ? ` is ${feeling}` : ""
+              }</p>
             </div>
             <span>${new Date(post.created).toLocaleString()}</span>
           </div>
@@ -198,11 +198,11 @@ export async function generatePosts(posts, container) {
     // Fallbacks
     attachImgFallback(
       postElement.querySelector(".user-profile img"),
-      DEFAULT_AVATAR
+      DEFAULT_AVATAR,
     );
     attachImgFallback(
       postElement.querySelector(".post-img"),
-      DEFAULT_POST_IMAGE
+      DEFAULT_POST_IMAGE,
     );
 
     // 😀 button to open detail (provided by page script via window)
@@ -264,7 +264,7 @@ export async function generatePosts(posts, container) {
           window.location.href = "login-user.html";
         } else {
           window.location.href = `user-profile.html?username=${encodeURIComponent(
-            post.author.name
+            post.author.name,
           )}`;
         }
       });

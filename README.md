@@ -48,7 +48,6 @@ npm install
 If you’re not using npm yet, you can either:
 
 - Add Bootstrap via CDN in your HTML
-- Install Sass globally: npm i -g sass
 
 2. Start a local server
 

@@ -20,7 +20,7 @@ export async function fetchPosts(includeAuthor = false) {
   } else {
     if (!username) return [];
     url = `${API_BASE}/social/profiles/${encodeURIComponent(
-      username
+      username,
     )}/posts?_author=true&_comments=true&_reactions=true`;
   }
 
@@ -33,9 +33,9 @@ export async function fetchPosts(includeAuthor = false) {
 export async function getSinglePost(id) {
   const res = await fetch(
     `${API_BASE}/social/posts/${encodeURIComponent(
-      id
+      id,
     )}?_author=true&_comments=true&_reactions=true`,
-    { headers: authHeaders() }
+    { headers: authHeaders() },
   );
   if (!res.ok) throw new Error("Failed to load post");
   const { data } = await res.json();
@@ -60,7 +60,7 @@ export async function updatePost(id, payload) {
       method: "PUT",
       headers: authHeaders(),
       body: JSON.stringify(payload),
-    }
+    },
   );
   if (!res.ok) throw new Error("Update failed");
   const { data } = await res.json();
@@ -73,7 +73,7 @@ export async function deletePost(id) {
     {
       method: "DELETE",
       headers: authHeaders(),
-    }
+    },
   );
   if (!res.ok) throw new Error("Delete failed");
   return true;

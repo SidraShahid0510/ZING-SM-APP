@@ -23,7 +23,7 @@ export async function followUser(username) {
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": Noroff_API_Key,
       },
-    }
+    },
   );
   if (!res.ok) throw new Error("Follow failed");
   return true;
@@ -52,7 +52,7 @@ export async function unfollowUser(username) {
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": Noroff_API_Key,
       },
-    }
+    },
   );
   if (!res.ok) throw new Error("Unfollow failed");
   return true;

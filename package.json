@@ -4,7 +4,7 @@
   "description": "This assignment is to built the front-end for a social media application\r ![image alt](https://github.com/SidraShahid0510/ZING-SM-APP/blob/main/zing-img.png?raw=true)",
   "main": "config.js",
   "scripts": {
-    "watch": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --watch",
+    "dev": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --watch",
     "build": "sass --load-path=node_modules --no-error-css styles/scss/main.scss styles/css/main.css --style=compressed"
   },
   "keywords": [],

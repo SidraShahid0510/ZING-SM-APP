@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,241 +26,244 @@
   </head>
   <body>
     <!-- NAVBAR (sticky, centered content) -->
-    <nav class="site-nav">
-      <div class="container container-xxl nav-container">
-        <!-- logo -->
-        <div class="logo">
-          <a href="feed.html">
-            <img src="images/zing-logo.svg" alt="zing logo" />
-          </a>
-        </div>
-
-        <!-- search -->
-        <div class="search-box" role="search">
-          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          <input
-            type="search"
-            id="nav-search"
-            placeholder="Search"
-            autocomplete="off"
-            enterkeyhint="search"
-          />
-        </div>
-
-        <!-- right cluster -->
-        <div class="nav-right">
-          <div class="nav-icons">
-            <a href="feed.html"><i class="fa-solid fa-house"></i></a>
-            <i class="fa-solid fa-bell"></i>
-            <i class="fa-solid fa-envelope"></i>
+    <header>
+      <nav class="site-nav">
+        <div class="container container-xxl nav-container">
+          <!-- logo -->
+          <div class="logo">
+            <a href="feed.html">
+              <img src="images/zing-logo.svg" alt="zing logo" />
+            </a>
           </div>
 
-          <div class="nav-user-icon online">
-            <img
-              id="nav-profile-img"
-              src="images/default-avatar.png"
-              alt="profile"
-              class="rounded-circle"
+          <!-- search -->
+          <div class="search-box" role="search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input
+              type="search"
+              id="nav-search"
+              placeholder="Search"
+              autocomplete="off"
+              enterkeyhint="search"
             />
           </div>
 
-          <!-- nav menu (profile) -->
-          <div class="nav-menu position-absolute">
-            <div
-              class="nav-menu-profile-section d-flex align-items-center mb-3"
-            >
-              <div class="nav-menu-profile d-flex align-items-center gap-3">
-                <img
-                  id="nav-menu-img"
-                  src="images/default-avatar.png"
-                  alt="profile"
-                  class="rounded-circle"
-                  style="width: 50px; height: 50px; object-fit: cover"
-                />
-                <div class="nav-menu-info">
-                  <p id="nav-username" class="mb-0 fw-semibold">User</p>
-                  <a href="login-user.html" class="text-decoration-none"
-                    >See your profile</a
-                  >
-                </div>
-              </div>
-              <i
-                class="fa-solid fa-circle-xmark"
-                id="close-nav-menu"
-                role="button"
-              ></i>
+          <!-- right cluster -->
+          <div class="nav-right">
+            <div class="nav-icons">
+              <a href="feed.html"><i class="fa-solid fa-house"></i></a>
+              <i class="fa-solid fa-bell"></i>
+              <i class="fa-solid fa-envelope"></i>
             </div>
 
-            <div class="nav-menu-content">
-              <i class="fa-solid fa-gear"></i>
-              <p class="mb-0">Settings & Privacy</p>
-            </div>
-            <div class="nav-menu-content">
-              <i class="fa-solid fa-circle-info"></i>
-              <p class="mb-0">Help & Support</p>
-            </div>
-            <div class="nav-menu-content">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              <p id="logout" class="mb-0">Logout</p>
+            <div class="nav-user-icon online">
+              <img
+                id="nav-profile-img"
+                src="images/default-avatar.png"
+                alt="profile"
+                class="rounded-circle"
+              />
             </div>
 
-            <div class="left-sidebar-menu row g-4 mx-0 d-lg-none">
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <a href="feed.html" class="text-decoration-none">
-                    <i class="fa-solid fa-house"></i>
-                    <p class="mb-0">Home</p>
-                  </a>
+            <!-- nav menu (profile) -->
+            <div class="nav-menu position-absolute">
+              <div
+                class="nav-menu-profile-section d-flex align-items-center mb-3"
+              >
+                <div class="nav-menu-profile d-flex align-items-center gap-3">
+                  <img
+                    id="nav-menu-img"
+                    src="images/default-avatar.png"
+                    alt="profile"
+                    class="rounded-circle"
+                    style="width: 50px; height: 50px; object-fit: cover"
+                  />
+                  <div class="nav-menu-info">
+                    <p id="nav-username" class="mb-0 fw-semibold">User</p>
+                    <a href="login-user.html" class="text-decoration-none"
+                      >See your profile</a
+                    >
+                  </div>
                 </div>
+                <i
+                  class="fa-solid fa-circle-xmark"
+                  id="close-nav-menu"
+                  role="button"
+                ></i>
               </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-bookmark"></i>
-                  <p class="mb-0">Saved</p>
-                </div>
+              <div class="nav-menu-content">
+                <i class="fa-solid fa-gear"></i>
+                <p class="mb-0">Settings & Privacy</p>
+              </div>
+              <div class="nav-menu-content">
+                <i class="fa-solid fa-circle-info"></i>
+                <p class="mb-0">Help & Support</p>
+              </div>
+              <div class="nav-menu-content">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <p id="logout" class="mb-0">Logout</p>
               </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-user-group"></i>
-                  <p class="mb-0">Friends</p>
+              <div class="left-sidebar-menu row g-4 mx-0 d-lg-none">
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <a href="feed.html" class="text-decoration-none">
+                      <i class="fa-solid fa-house"></i>
+                      <p class="mb-0">Home</p>
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-calendar-days"></i>
-                  <p class="mb-0">Events</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <p class="mb-0">Saved</p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-video"></i>
-                  <p class="mb-0">Videos</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-user-group"></i>
+                    <p class="mb-0">Friends</p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-image"></i>
-                  <p class="mb-0">Photos</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <p class="mb-0">Events</p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-file"></i>
-                  <p class="mb-0">Files</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-video"></i>
+                    <p class="mb-0">Videos</p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="left-sidebar-menu-items col-6">
-                <div class="menu-tile">
-                  <i class="fa-solid fa-gamepad"></i>
-                  <p class="mb-0">Games</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-image"></i>
+                    <p class="mb-0">Photos</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- friends menu -->
-          <div class="nav-friends position-absolute" aria-hidden="true">
-            <div
-              class="friends-header d-flex align-items-center justify-content-between"
-            >
-              <h1>Friends</h1>
-              <i
-                class="fa-solid fa-circle-xmark"
-                id="close-friend-btn"
-                role="button"
-              ></i>
-            </div>
-
-            <div class="friends-list row">
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/maria.jpg" alt="Maria" />
-                  <p>Maria</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-file"></i>
+                    <p class="mb-0">Files</p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/Tina.jpg" alt="Tina" />
-                  <p>Tina</p>
-                </div>
-              </div>
-
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/oliver.jpg" alt="Oliver" />
-                  <p>Oliver</p>
-                </div>
-              </div>
-
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/sara.jpg" alt="Sara" />
-                  <p>Sara</p>
-                </div>
-              </div>
-
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/sophia.jpg" alt="Sophia" />
-                  <p>Sophia</p>
-                </div>
-              </div>
-
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/Urwah.jpg" alt="Urwah" />
-                  <p>Urwah</p>
-                </div>
-              </div>
-
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/Mathias.jpg" alt="Mathias" />
-                  <p>Mathias</p>
-                </div>
-              </div>
-
-              <div class="friend-info col-6">
-                <div class="friend-card">
-                  <img src="images/tania.jpg" alt="Tania" />
-                  <p>Tania</p>
+                <div class="left-sidebar-menu-items col-6">
+                  <div class="menu-tile">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <p class="mb-0">Games</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- events menu -->
-          <div class="event-menu" aria-hidden="true">
-            <div class="events-header">
-              <h1 class="title">Events</h1>
-              <i
-                class="fa-solid fa-circle-xmark"
-                id="close-nav-event"
-                role="button"
-              ></i>
+            <!-- friends menu -->
+            <div class="nav-friends position-absolute" aria-hidden="true">
+              <div
+                class="friends-header d-flex align-items-center justify-content-between"
+              >
+                <h1>Friends</h1>
+                <i
+                  class="fa-solid fa-circle-xmark"
+                  id="close-friend-btn"
+                  role="button"
+                ></i>
+              </div>
+
+              <div class="friends-list row">
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/maria.jpg" alt="Maria" />
+                    <p>Maria</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/Tina.jpg" alt="Tina" />
+                    <p>Tina</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/oliver.jpg" alt="Oliver" />
+                    <p>Oliver</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/sara.jpg" alt="Sara" />
+                    <p>Sara</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/sophia.jpg" alt="Sophia" />
+                    <p>Sophia</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/Urwah.jpg" alt="Urwah" />
+                    <p>Urwah</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/Mathias.jpg" alt="Mathias" />
+                    <p>Mathias</p>
+                  </div>
+                </div>
+
+                <div class="friend-info col-6">
+                  <div class="friend-card">
+                    <img src="images/tania.jpg" alt="Tania" />
+                    <p>Tania</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="event-details">
-              <i class="fa-solid fa-calendar-days"></i>
-              <p>4 events invites</p>
-            </div>
+            <!-- events menu -->
+            <div class="event-menu" aria-hidden="true">
+              <div class="events-header">
+                <h1 class="title">Events</h1>
+                <i
+                  class="fa-solid fa-circle-xmark"
+                  id="close-nav-event"
+                  role="button"
+                ></i>
+              </div>
 
-            <div class="event-details">
-              <i class="fa-solid fa-cake-candles"></i>
-              <p>Today Maria's birthday</p>
+              <div class="event-details">
+                <i class="fa-solid fa-calendar-days"></i>
+                <p>4 events invites</p>
+              </div>
+
+              <div class="event-details">
+                <i class="fa-solid fa-cake-candles"></i>
+                <p>Today Maria's birthday</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
+
     <main class="site-main">
       <!-- create post section -->
       <div class="create-post-container">
@@ -272,7 +275,7 @@
           <div class="create-content">
             <img
               src="images/default-avatar.png"
-              alt="profile-pic"
+              alt="user profile picture"
               id="create-profile-img"
             />
             <div>
@@ -393,7 +396,7 @@
           <div class="edit-content">
             <img
               src="images/default-avatar.png"
-              alt="profile-pic"
+              alt="user profile picture"
               id="edit-profile-img"
             />
             <div>
@@ -520,7 +523,6 @@
 
       <!-- bootstrap container -->
       <div class="container container-xxl">
-        <!-- keep your .container -->
         <div class="row gx-5">
           <!-- NEW: grid row -->
 
@@ -709,7 +711,7 @@
         <p>© 2025 Your Site</p>
       </div>
     </footer>
-    <script type="module" src="script.js"></script>
-    <script type="module" src="nav-menu.js"></script>
+    <script type="module" src="JS/script.js"></script>
+    <script type="module" src="JS/nav-menu.js"></script>
   </body>
 </html>

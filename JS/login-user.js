@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     panel.innerHTML = emojis
       .map(
         (e) =>
-          `<button type="button" class="pd-emoji-item" data-emoji="${e}">${e}</button>`
+          `<button type="button" class="pd-emoji-item" data-emoji="${e}">${e}</button>`,
       )
       .join("");
     composer.insertAdjacentElement("afterend", panel);
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
     const pdImg = document.querySelector(
-      ".post-detail-container.active .pd-user-profile img"
+      ".post-detail-container.active .pd-user-profile img",
     );
     if (pdImg) {
       pdImg.src = newUrl;
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const editImg = document.querySelector(
-      ".edit-post-container #edit-profile-img"
+      ".edit-post-container #edit-profile-img",
     );
     if (editImg) {
       editImg.src = newUrl;
@@ -236,14 +236,14 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(
         `${API_BASE}/social/profiles/${encodeURIComponent(
-          username
+          username,
         )}/posts?_author=false&_comments=false&_reactions=false`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": Noroff_API_Key,
           },
-        }
+        },
       );
       const { data = [] } = await res.json();
       return Array.isArray(data) ? data.length : 0;
@@ -283,14 +283,14 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(
         `${API_BASE}/social/profiles/${encodeURIComponent(
-          username
+          username,
         )}?_followers=true&_following=true`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": Noroff_API_Key,
           },
-        }
+        },
       );
       const { data } = await res.json();
       return Array.isArray(data?.following) ? data.following.length : 0;
@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": Noroff_API_Key,
           },
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to fetch user profile");
       const { data } = await res.json();
@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "X-Noroff-API-Key": Noroff_API_Key,
         },
         body: JSON.stringify({ avatar: { url } }),
-      }
+      },
     );
     return res.ok;
   }
@@ -512,7 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": Noroff_API_Key,
           },
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to load banner");
       const json = await res.json();
@@ -539,7 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "X-Noroff-API-Key": Noroff_API_Key,
           },
           body: JSON.stringify({ banner: { url } }),
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to update banner");
       setBanner(url);
@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const performSearch = debounce(() => {
       const filtered = filterMyPosts(
-        (inputEl.value || "").toLowerCase().trim()
+        (inputEl.value || "").toLowerCase().trim(),
       );
       generatePosts(filtered, containerEl);
     }, 200);
@@ -628,14 +628,14 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(
         `${API_BASE}/social/profiles/${encodeURIComponent(
-          currentUser
+          currentUser,
         )}?_followers=true&_following=true`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": Noroff_API_Key,
           },
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to fetch profile data");
       const { data: profile } = await res.json();
@@ -714,7 +714,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Authorization: `Bearer ${token}`,
             "X-Noroff-API-Key": Noroff_API_Key,
           },
-        }
+        },
       );
       const { data } = await res.json();
       if (bioText) bioText.textContent = data.bio || "";
@@ -744,7 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "X-Noroff-API-Key": Noroff_API_Key,
           },
           body: JSON.stringify({ bio: newBio }),
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to update bio");
 
@@ -756,7 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearTimeout(statusTimeoutId);
         statusTimeoutId = setTimeout(
           () => (statusText.textContent = ""),
-          STATUS_DISPLAY_MS
+          STATUS_DISPLAY_MS,
         );
       }
     } catch (e) {
@@ -778,7 +778,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const editTextarea = editPostContainer?.querySelector(".edit-txt textarea");
   const editImageInput = editPostContainer?.querySelector("#edit-image-url");
   const editPreviewImg = editPostContainer?.querySelector(
-    ".edit-url-img-div img"
+    ".edit-url-img-div img",
   );
   const editUrlImageDiv = editPostContainer?.querySelector(".edit-url-img-div");
   const saveEditBtn = editPostContainer?.querySelector(".edit-post-btn");
@@ -786,7 +786,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const editFeelingOptions = editFeelingsSection?.querySelectorAll(".feeling");
   const editCloseFeelingsBtn = document.getElementById("close-edit-feelings");
   const editFeelingsIcon = document.querySelector(
-    ".edit-activity-icons .fa-face-smile"
+    ".edit-activity-icons .fa-face-smile",
   );
 
   // feelings in edit modal
@@ -800,7 +800,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // edit image UI
   const editImageIcon = editPostContainer?.querySelector(
-    ".edit-activity-icons .fa-image"
+    ".edit-activity-icons .fa-image",
   );
   editImageIcon?.addEventListener("click", () => {
     if (!editImageInput) return;
@@ -946,7 +946,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const newText = isFollowing ? "Follow" : "Following";
       document
         .querySelectorAll(
-          `.follow-text[data-author="${usernameToToggle}"], .pd-follow-text[data-author="${usernameToToggle}"]`
+          `.follow-text[data-author="${usernameToToggle}"], .pd-follow-text[data-author="${usernameToToggle}"]`,
         )
         .forEach((b) => {
           b.textContent = newText;
@@ -992,7 +992,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "X-Noroff-API-Key": Noroff_API_Key,
           },
           body: JSON.stringify({ body: text }),
-        }
+        },
       );
       if (!res.ok) throw new Error("Failed to send comment");
 
@@ -1008,7 +1008,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function syncCardCountsFromPost(post) {
     if (!post || !post.id) return;
     const card = document.querySelector(
-      `.profile-post-container .post[data-post-id="${post.id}"]`
+      `.profile-post-container .post[data-post-id="${post.id}"]`,
     );
     if (!card) return;
 
@@ -1037,7 +1037,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const feelingsSection = document.querySelector(".feelings-section");
   const feelingsIcon = document.querySelector(
-    ".create-activity-icons .fa-face-smile"
+    ".create-activity-icons .fa-face-smile",
   );
   const closeFeelingsBtn = document.getElementById("close-feelings");
   const feelingOptions = feelingsSection?.querySelectorAll(".feeling");
@@ -1174,7 +1174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const postDetailContainer = document.querySelector(".post-detail-container");
   const postDetailContent = postDetailContainer?.querySelector(
-    ".post-detail-content"
+    ".post-detail-content",
   );
   const closePostDetailBtn = document.getElementById("close-post-detail");
 
@@ -1269,7 +1269,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ${new Date(c.created).toLocaleString()}
           </span>
         </div>
-      </div>`
+      </div>`,
             )
             .join("")
         : `<p class="pd-no-comments">No comments yet.</p>`
@@ -1287,7 +1287,7 @@ document.addEventListener("DOMContentLoaded", () => {
           window.location.href = "login-user.html";
         } else {
           window.location.href = `user-profile.html?username=${encodeURIComponent(
-            post.author.name
+            post.author.name,
           )}`;
         }
       });
@@ -1312,11 +1312,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     attachImgFallback(
       postDetailContent.querySelector(".pd-user-profile img"),
-      DEFAULT_AVATAR
+      DEFAULT_AVATAR,
     );
     attachImgFallback(
       postDetailContent.querySelector(".pd-img"),
-      DEFAULT_POST_IMAGE
+      DEFAULT_POST_IMAGE,
     );
   }
 
