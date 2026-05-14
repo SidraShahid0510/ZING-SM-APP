@@ -50,7 +50,7 @@ async function fetchAndSetAvatar() {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(username)}`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     if (!res.ok) throw new Error("Failed to fetch user profile");
     const { data } = await res.json();
@@ -135,7 +135,7 @@ function updateMyAvatarEverywhere(newUrlRaw) {
 
   // detail modal if open
   const pd = document.querySelector(
-    ".post-detail-container.active .pd-user-profile img"
+    ".post-detail-container.active .pd-user-profile img",
   );
   if (pd) {
     pd.src = newUrl;
@@ -160,9 +160,9 @@ async function fetchUserPostCount(username) {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(
-        username
+        username,
       )}/posts?_author=false&_comments=false&_reactions=false`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     const { data = [] } = await res.json();
     return Array.isArray(data) ? data.length : 0;
@@ -218,9 +218,9 @@ async function fetchFollowingCount(username) {
   try {
     const res = await fetch(
       `${API_BASE}/social/profiles/${encodeURIComponent(
-        username
+        username,
       )}?_followers=true&_following=true`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     const { data } = await res.json();
     return Array.isArray(data?.following) ? data.following.length : 0;
@@ -279,7 +279,7 @@ async function toggleFollow(username, btnEl) {
     const newText = isFollowing ? "Follow" : "Following";
     document
       .querySelectorAll(
-        `.follow-text[data-author="${username}"], .pd-follow-text[data-author="${username}"]`
+        `.follow-text[data-author="${username}"], .pd-follow-text[data-author="${username}"]`,
       )
       .forEach((b) => {
         b.textContent = newText;
@@ -383,7 +383,7 @@ const titleInput = document.getElementById("post-title");
 
 const feelingsSection = document.querySelector(".feelings-section");
 const feelingsIcon = document.querySelector(
-  ".create-activity-icons .fa-face-smile"
+  ".create-activity-icons .fa-face-smile",
 );
 const closeFeelingsBtn = document.getElementById("close-feelings");
 const feelingOptions = feelingsSection?.querySelectorAll(".feeling");
@@ -396,23 +396,32 @@ const feelingOptions = feelingsSection?.querySelectorAll(".feeling");
  */
 function setupEmojiPicker(feelingOptions, textareaElement, feelingsSection) {
   if (!feelingOptions || !textareaElement || !feelingsSection) return;
+
   feelingOptions.forEach((feeling) => {
     feeling.addEventListener("click", () => {
       const emoji = feeling.querySelector("span")?.textContent || "";
+
       if (!emoji) return;
+
       textareaElement.value += emoji + " ";
       feelingsSection.style.display = "none";
       textareaElement.focus();
     });
   });
 }
+
 setupEmojiPicker(feelingOptions, textarea, feelingsSection);
 
 feelingsIcon?.addEventListener("click", () => {
-  feelingsSection && (feelingsSection.style.display = "flex");
+  if (feelingsSection) {
+    feelingsSection.style.display = "flex";
+  }
 });
+
 closeFeelingsBtn?.addEventListener("click", () => {
-  feelingsSection && (feelingsSection.style.display = "none");
+  if (feelingsSection) {
+    feelingsSection.style.display = "none";
+  }
 });
 
 /**
@@ -479,7 +488,7 @@ postBtn?.addEventListener("click", createPost);
   const editPreviewImg = editUrlImageDiv?.querySelector("img");
 
   const editImageIcon = document.querySelector(
-    ".edit-activity-icons .fa-image"
+    ".edit-activity-icons .fa-image",
   );
   if (editImageIcon && editImageInput) {
     editImageIcon.addEventListener("click", () => {
@@ -522,7 +531,7 @@ postBtn?.addEventListener("click", createPost);
   const editFeelingOptions = editFeelingsSection?.querySelectorAll(".feeling");
   const editTextarea = editPostContainer.querySelector(".edit-txt textarea");
   const editFeelingsIcon = document.querySelector(
-    ".edit-activity-icons .fa-face-smile"
+    ".edit-activity-icons .fa-face-smile",
   );
   const editCloseFeelingsBtn = document.getElementById("close-edit-feelings");
 
@@ -591,23 +600,23 @@ async function refreshCountsFromServer(postId) {
   try {
     const res = await fetch(
       `${API_BASE}/social/posts/${encodeURIComponent(
-        postId
+        postId,
       )}?_comments=true&_reactions=true`,
-      { headers: authHeaders() }
+      { headers: authHeaders() },
     );
     const { data } = await res.json();
     const likes = data?._count?.reactions ?? 0;
     const comments = Array.isArray(data?.comments)
       ? data.comments.length
-      : data?._count?.comments ?? 0;
+      : (data?._count?.comments ?? 0);
 
     // sync modal
     const modalLike = document.querySelector(
-      ".post-detail-content .pd-like-count"
+      ".post-detail-content .pd-like-count",
     );
     if (modalLike) modalLike.textContent = String(likes);
     const modalComments = document.querySelector(
-      ".post-detail-content .pd-comment-num"
+      ".post-detail-content .pd-comment-num",
     );
     if (modalComments) modalComments.textContent = String(comments);
 
@@ -670,14 +679,14 @@ function setupFeedSearch(containerEl) {
 /** Update a post card's like count in the list. */
 function updateListLikeCount(postId, newCount) {
   const el = document.querySelector(
-    `.post[data-post-id="${postId}"] .activity-like-count`
+    `.post[data-post-id="${postId}"] .activity-like-count`,
   );
   if (el) el.textContent = String(newCount);
 }
 /** Update a post card's comment count in the list. */
 function updateListCommentCount(postId, newCount) {
   const el = document.querySelector(
-    `.post[data-post-id="${postId}"] .activity-comment-num`
+    `.post[data-post-id="${postId}"] .activity-comment-num`,
   );
   if (el) el.textContent = String(newCount);
 }
@@ -716,7 +725,7 @@ async function toggleLike(postId, btnEl) {
 
 const postDetailContainer = document.querySelector(".post-detail-container");
 const postDetailContent = postDetailContainer?.querySelector(
-  ".post-detail-content"
+  ".post-detail-content",
 );
 const closePostDetailBtn = document.getElementById("close-post-detail");
 
@@ -798,7 +807,7 @@ function setupCommentEmojiUI(modalRootEl) {
   panel.innerHTML = emojis
     .map(
       (e) =>
-        `<button type="button" class="pd-emoji-item" data-emoji="${e}">${e}</button>`
+        `<button type="button" class="pd-emoji-item" data-emoji="${e}">${e}</button>`,
     )
     .join("");
   composer.insertAdjacentElement("afterend", panel);
@@ -844,8 +853,8 @@ function renderPostDetail(post) {
         <div>
           <div class="author-row">
             <p class="pd-author-name">${post.author?.name || "unknown"}${
-    feeling ? ` is ${feeling}` : ""
-  }</p>
+              feeling ? ` is ${feeling}` : ""
+            }</p>
           </div>
           <span>${new Date(post.created).toLocaleString()}</span>
         </div>
@@ -894,10 +903,10 @@ function renderPostDetail(post) {
               <p class="pd-comment-author">${c.author?.name || "unknown"}</p>
               <p class="pd-comment-body">${c.body || ""}</p>
               <span class="pd-comment-time">${new Date(
-                c.created
+                c.created,
               ).toLocaleString()}</span>
             </div>
-          </div>`
+          </div>`,
               )
               .join("")
           : `<p class="pd-no-comments">No comments yet.</p>`
@@ -911,7 +920,7 @@ function renderPostDetail(post) {
   if (pdUserProfile && post.author?.name) {
     pdUserProfile.addEventListener("click", () => {
       window.location.href = `user-profile.html?username=${encodeURIComponent(
-        post.author.name
+        post.author.name,
       )}`;
     });
   }
@@ -931,11 +940,11 @@ function renderPostDetail(post) {
 
   attachImgFallback(
     postDetailContent.querySelector(".pd-user-profile img"),
-    DEFAULT_AVATAR
+    DEFAULT_AVATAR,
   );
   attachImgFallback(
     postDetailContent.querySelector(".pd-img"),
-    DEFAULT_POST_IMAGE
+    DEFAULT_POST_IMAGE,
   );
 }
 
@@ -988,8 +997,6 @@ async function deletePost(postId, container) {
     if (typeof updateOtherUserPostCount === "function") {
       updateOtherUserPostCount(localStorage.getItem("name"));
     }
-
-    console.log(`Post ${postId} deleted successfully.`);
   } catch (err) {
     console.error("Failed to delete post:", err);
   }
@@ -1093,7 +1100,7 @@ async function sendComment(postId, textareaEl) {
         method: "POST",
         headers: authHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({ body: text }),
-      }
+      },
     );
     if (!res.ok) throw new Error("Comment request failed");
 
@@ -1134,7 +1141,7 @@ function appendComment(c) {
         <p class="pd-comment-author">${c.author?.name || "User"}</p>
         <p class="pd-comment-body">${c.body || ""}</p>
         <span class="pd-comment-time">${new Date(
-          c.created
+          c.created,
         ).toLocaleString()}</span>
       </div>
     </div>

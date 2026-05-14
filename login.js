@@ -2,16 +2,25 @@ const Noroff_API_Key = "384ffc1f-5fb6-497c-b8ef-68eb6ba14e6f";
 
 const loginForm = document.querySelector("#form");
 const message = document.querySelector(".message");
-const loader = document.getElementById("loader");
+
 hideLoader();
+/**
+ * Displays the loading spinner while content is loading.
+ */
 function showLoader() {
   document.getElementById("loader").style.display = "flex";
 }
-
+/**
+ * Hides the loading spinner.
+ */
 function hideLoader() {
   document.getElementById("loader").style.display = "none";
 }
 
+/**
+ * Fetches the latest user avatar and stores it in localStorage.
+ * This helps keep the avatar updated across the app.
+ */
 async function hydrateAvatarCache() {
   const accessToken = localStorage.getItem("accessToken");
   const username = localStorage.getItem("name");
@@ -20,14 +29,14 @@ async function hydrateAvatarCache() {
   try {
     const res = await fetch(
       `https://v2.api.noroff.dev/social/profiles/${encodeURIComponent(
-        username
+        username,
       )}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "X-Noroff-API-Key": Noroff_API_Key,
         },
-      }
+      },
     );
     const { data } = await res.json();
     const url = (data?.avatar?.url || "").trim();

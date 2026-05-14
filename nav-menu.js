@@ -1,4 +1,8 @@
 // nav-menu.js
+/**
+ * Initializes the navigation menus and menu interactions.
+ * Handles opening, closing, keyboard controls, and logout.
+ */
 export function initNav(root = document) {
   // ===== Main user menu =====
   const navMenu = root.querySelector(".nav-menu");
@@ -14,7 +18,9 @@ export function initNav(root = document) {
     navMenu.style.display = "none"; // start hidden
     navMenu.setAttribute("aria-hidden", "true");
   }
-
+  /**
+   * Opens the main navigation menu.
+   */
   function openNavMenu() {
     if (!navMenu) return;
     navMenu.style.display = "block";
@@ -35,7 +41,7 @@ export function initNav(root = document) {
         navMenu.setAttribute("aria-hidden", "true");
         navUserIcon?.setAttribute("aria-expanded", "false");
       },
-      { once: true }
+      { once: true },
     );
   }
 
@@ -47,7 +53,7 @@ export function initNav(root = document) {
   // ===== Friends menu  =====
   const friendMenu = root.querySelector(".nav-friends");
   const friendsBtn = root.querySelector(
-    ".left-sidebar-menu-items:nth-child(3)"
+    ".left-sidebar-menu-items:nth-child(3)",
   );
   const closeFriendBtn = root.getElementById
     ? root.getElementById("close-friend-btn")
@@ -55,11 +61,17 @@ export function initNav(root = document) {
 
   if (friendMenu) friendMenu.setAttribute("aria-hidden", "true");
 
+  /**
+   * Opens the friends panel inside the navigation menu.
+   */
   function openFriendMenu() {
     if (!friendMenu) return;
     friendMenu.classList.add("show");
     friendMenu.setAttribute("aria-hidden", "false");
   }
+  /**
+   * Closes the friends panel.
+   */
   function closeFriendMenu() {
     if (!friendMenu) return;
     friendMenu.classList.remove("show");
@@ -85,11 +97,17 @@ export function initNav(root = document) {
 
   if (eventMenu) eventMenu.setAttribute("aria-hidden", "true");
 
+  /**
+   * Opens the events panel inside the navigation menu.
+   */
   function openEventMenu() {
     if (!eventMenu) return;
     eventMenu.classList.add("show");
     eventMenu.setAttribute("aria-hidden", "false");
   }
+  /**
+   * Closes the events panel.
+   */
   function closeEventMenu() {
     if (!eventMenu) return;
     eventMenu.classList.remove("show");
@@ -138,7 +156,10 @@ export function initNav(root = document) {
     });
   }
 }
-
+/**
+ * Logs the user out by clearing local storage
+ * and redirecting back to the login page.
+ */
 export function performLogout(navMenuEl) {
   try {
     localStorage.removeItem("accessToken");

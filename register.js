@@ -1,15 +1,27 @@
 const registrationForm = document.querySelector("#form");
 const message = document.querySelector(".message");
 const loader = document.getElementById("loader");
+
 hideLoader();
+
+/**
+ * Shows the loading spinner while the request is running.
+ */
 function showLoader() {
   document.getElementById("loader").style.display = "flex";
 }
 
+/**
+ * Hides the loading spinner.
+ */
 function hideLoader() {
   document.getElementById("loader").style.display = "none";
 }
 
+/**
+ * Sends the registration data to the Noroff API.
+ * If successful, the user is redirected to the login page.
+ */
 async function registerUser(userdetails) {
   try {
     showLoader(); // Show loader when user clicks register
@@ -25,24 +37,26 @@ async function registerUser(userdetails) {
 
     const response = await fetch(
       "https://v2.api.noroff.dev/auth/register",
-      fetchOptions
+      fetchOptions,
     );
+
     const result = await response.json();
 
     if (response.ok) {
       message.textContent = "Registration successful!";
-      console.log("User registered:", result);
 
       // Short delay to show success message, then redirect
       setTimeout(() => {
         hideLoader();
         window.location.href = "index.html"; // Login page
-      }, 800); // 0.8s delay for smooth transition
+      }, 800);
     } else {
       hideLoader();
+
       message.textContent =
         result.errors?.map((err) => err.message).join(", ") ||
         "Something went wrong.";
+
       console.error("API error:", result);
     }
   } catch (error) {
@@ -52,6 +66,10 @@ async function registerUser(userdetails) {
   }
 }
 
+/**
+ * Handles form submission and checks if the email
+ * uses the required Noroff student domain.
+ */
 function formSubmit(e) {
   e.preventDefault();
 
